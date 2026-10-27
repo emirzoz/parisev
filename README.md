@@ -8,9 +8,9 @@ Hedef: Mines Paris – PSL, 60 Boulevard Saint-Michel.
 
 ## Skor (100 üzerinden, önem sırasıyla)
 1. 2 ayrı yatak odası — 40 (salondaki çekyat sayılmaz; oda dökümü yoksa 32, şüpheliyse 18)
-2. Puan 15 + yorumlar 10 (son 2 yılın her 3★ altı yorumu −2,5; yorumlarda izinsiz giriş iddiası −5)
-3. Mines'e kapıdan kapıya süre — 20 (15 dk tam, 55 dk sıfır, 1 saat üstü −5)
-4. Ödeme ekranındaki vergi dahil fiyat — 15
+2. Puan 15 (az yorumlu ilanın puanı platform ortalamasına çekilir) + yorumlar 10 (3★ altı yorum oranı %8'e ulaşınca 0; izinsiz giriş iddiası −5)
+3. Mines'e kapıdan kapıya süre — 20 (15 dk tam, 40 dk sıfır, sonrası dakika başı −0,5)
+4. Ödeme ekranındaki vergi dahil fiyat — bütçe (65.000 TL) içinde 3–15, üstünde her 1.000 TL −2 (en çok −15)
 
 ## Veri kaynakları
 - Airbnb: [`pyairbnb`](https://pypi.org/project/pyairbnb/) + ilan sayfası (Playwright). Konumlar Airbnb'nin kaydırdığı yaklaşık konum.

@@ -222,30 +222,41 @@ def rooms_status(r):
 
 
 def score(r):
-    """Öncelik sırası: 2 ayrı yatak odası > yorumlar + puan > ulaşım süresi > fiyat."""
+    """Öncelik sırası: 2 ayrı yatak odası > yorumlar + puan > ulaşım süresi > fiyat; bütçe üstü ve 40 dk üstü cezalı."""
     parts = {}
     parts["oda"] = {"onaylı": 40, "doğrulanmalı": 32, "şüpheli": 18, "yok": 0}[r["rooms_status"]]
 
-    rt = r.get("rating")
-    good, bad = (4.95, 4.3) if r["rating_scale"] == 5 else (9.2, 6.5)  # platform ölçekleri farklı dağılıyor
-    parts["puan"] = round(15 * lin(rt, good, bad)) if rt else 5
+    # az yorumlu ilanın puanı platform ortalamasına çekilir (15 sanal yorumluk ağırlık)
+    rt, n = r.get("rating"), r.get("review_count") or 0
+    prior, good, bad = (4.7, 4.95, 4.3) if r["rating_scale"] == 5 else (8.0, 9.2, 6.5)
+    if rt:
+        r["rating_adj"] = round((n * rt + 15 * prior) / (n + 15), 2)
+        parts["puan"] = round(15 * lin(r["rating_adj"], good, bad))
+    else:
+        parts["puan"] = 5
+    # kötü yorum cezası adet değil oran: son 2 yılın 3★ altı yorumları toplam yorumun %8'ine ulaşınca 0
     low = r.get("low_reviews")
-    parts["yorum"] = 6 if low is None else max(0, round(10 - 2.5 * len(low)))
+    parts["yorum"] = 6 if low is None else round(10 * max(0.0, 1 - len(low) / max(n, 1) / 0.08))
     if "izinsiz giriş" in (r.get("notes") or ""):
         parts["yorum"] -= 5  # yorumlarda güvenlik iddiası
 
     t = r.get("transit_min")
     if t is not None:
-        # kapıdan kapıya 15 dk → 20 puan, 55 dk → 0, 1 saat üstü ek ceza
-        parts["ulaşım"] = round(20 * lin(t, 15, 55)) - (5 if t > 60 else 0)
+        # kapıdan kapıya 15 dk → 20 puan, 40 dk → 0; 40 dk sonrası her dakika −0,5
+        parts["ulaşım"] = round(20 * lin(t, 15, 40)) - (round((t - 40) * 0.5) if t > 40 else 0)
     else:
         parts["ulaşım"] = round(15 * (lin(r.get("dist_mines_km"), 3, 18) or 0))
 
-    p = lin(r.get("price_total_try"), 45000, 72000)
-    parts["fiyat"] = 4 if p is None else round(15 * p)
+    pr = r.get("price_total_try")
+    if pr is None:
+        parts["fiyat"] = 4
+    elif pr <= BUDGET_TRY:
+        parts["fiyat"] = round(3 + 12 * lin(pr, 45000, BUDGET_TRY))
+    else:
+        parts["fiyat"] = -min(15, round((pr - BUDGET_TRY) / 1000 * 2))  # bütçe üstü her 1.000 TL −2
 
     total = max(0, sum(parts.values()))
-    if r.get("price_total_try") is None:
+    if pr is None:
         total = min(total, 45)  # fiyatı/müsaitliği belli olmayan ilan üst sıralara çıkmasın
     return total, parts
 

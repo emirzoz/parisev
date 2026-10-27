@@ -98,7 +98,7 @@ def main():
     for line in [
         f"Oluşturulma: {date.today().isoformat()} · 13–22 Kasım 2026, 9 gece, 3 yetişkin · bütçe {BUDGET_TRY:,} TL".replace(",", "."),
         "Toplam TL: ödeme ekranında görülen vergi dahil fiyat (kullanıcı, 27.10.2026; data/price_checked.csv). Airbnb'de ödeme ekranı ilan sayfasından çoğunlukla ~%15 yüksek.",
-        "Skor (0–100), önem sırasıyla: 2 ayrı yatak odası 40 (salondaki çekyat sayılmaz; oda dökümü yoksa 32, şüpheliyse 18), puan 15 + yorumlar 10 (her 3★ altı yorum −2,5, izinsiz giriş iddiası −5), Mines'e süre 20 (15 dk tam, 55 dk sıfır, 1 saat üstü −5), fiyat 15. Fiyatı olmayan ilan en çok 45.",
+        "Skor (0–100), önem sırasıyla: 2 ayrı yatak odası 40 (salondaki çekyat sayılmaz; oda dökümü yoksa 32, şüpheliyse 18); puan 15 (az yorumlu ilanın puanı platform ortalamasına çekilir) + yorumlar 10 (son 2 yılın 3★ altı yorumları toplam yorumun %8'ine ulaşınca 0; izinsiz giriş iddiası −5); Mines'e kapıdan kapıya süre 20 (15 dk tam, 40 dk sıfır, sonrası dakika başı −0,5); fiyat: 65.000 TL bütçe içinde 3–15, bütçe üstü her 1.000 TL −2 (en çok −15). Süreler elle girildi (data/transit_manual.csv).",
         "Airbnb konumu platformun kaydırdığı yaklaşık konum (~300 m); Booking adresi kesin. Mesafeler kuş uçuşu.",
         "Boş hücre = sayfadan okunamadı. Ödeme ekranında fiyatı ve iptal tarihini mutlaka teyit et.",
         "Not sütunu orijinal tablodan (Paris_27_Ilan.xlsx) aktarıldı.",
