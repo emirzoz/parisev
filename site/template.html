@@ -114,6 +114,43 @@ summary.ok { color: var(--muted); font-weight: 400; cursor: default; list-style:
 .leaflet-control-layers-toggle::after { content: "Katmanlar"; }
 .leaflet-control-layers-expanded .leaflet-control-layers-toggle { display: none !important; }
 
+/* filtreler, kısa liste, karşılaştırma */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.fchip { font: 600 13px var(--f-body); color: var(--ink); background: none; border: 1px solid var(--hair); border-radius: 999px;
+  padding: 6px 12px; cursor: pointer; min-height: 34px; }
+.fchip[aria-pressed="true"] { background: var(--ink); color: var(--panel); border-color: var(--ink); }
+.countbar { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 13px; color: var(--muted); min-height: 36px; }
+.cmp-open { font: 700 13px var(--f-body); background: var(--accent); color: #141414; border: 0; border-radius: 999px;
+  padding: 8px 14px; cursor: pointer; min-height: 36px; }
+.star { background: none; border: 0; font-size: 20px; line-height: 1; color: var(--muted); cursor: pointer;
+  width: 36px; height: 32px; border-radius: 8px; flex: none; }
+.star[aria-pressed="true"] { color: var(--accent); }
+.pin.starred::before { content: "★"; margin-right: 3px; color: var(--accent); }
+.breakdown { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.empty { font-size: 14px; color: var(--muted); padding: 12px 0; list-style: none; }
+details.note > summary { cursor: pointer; list-style: none; font-weight: 700; color: var(--ink); }
+details.note > summary::after { content: " · ayrıntı"; font-weight: 400; color: var(--muted); }
+details.note[open] > summary::after { content: ""; }
+details.note p { margin: 6px 0 0; }
+.cmp-overlay:not([hidden]) { position: fixed; inset: 0; z-index: 2000; background: rgba(10, 15, 25, .55);
+  display: flex; align-items: center; justify-content: center; padding: 16px; }
+.cmp-panel { background: var(--panel); color: var(--ink); border-radius: 16px; width: min(1100px, 100%); max-height: 100%;
+  display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,.35); }
+.cmp-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--hair); }
+.cmp-head h2 { font: 700 18px var(--f-display); margin: 0; }
+.cmp-head button { font: 700 13px var(--f-body); border: 1px solid var(--hair); background: none; color: var(--ink);
+  border-radius: 999px; padding: 8px 14px; cursor: pointer; min-height: 36px; }
+.cmp-scroll { overflow: auto; -webkit-overflow-scrolling: touch; }
+.cmp-scroll table { border-collapse: collapse; font-size: 13px; }
+.cmp-scroll th, .cmp-scroll td { padding: 8px 10px; border-bottom: 1px solid var(--hair); text-align: left; vertical-align: top; min-width: 160px; max-width: 220px; }
+.cmp-scroll th[scope="row"] { position: sticky; left: 0; z-index: 1; background: var(--panel); color: var(--muted);
+  font-weight: 600; font-size: 12px; min-width: 92px; width: 92px; }
+.cmp-scroll thead td { font: 700 14px/1.25 var(--f-display); }
+.cmp-scroll img { width: 150px; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 8px; display: block; margin-bottom: 6px; }
+.cmp-scroll .best { color: var(--s1); font-weight: 700; }
+.cmp-scroll a { color: var(--ink); font-weight: 700; display: inline-block; padding: 3px 0; }
+.cmp-scroll .bad { color: var(--warn); }
+.cmp-scroll td button { font: 600 12px var(--f-body); border: 0; background: none; color: var(--muted); cursor: pointer; padding: 4px 0; text-decoration: underline; }
 details.more > summary { color: var(--ink); font-weight: 700; padding: 4px 0; }
 details.more[open] > summary { margin-bottom: 6px; }
 details.more > .facts { margin-bottom: 8px; }
@@ -154,6 +191,10 @@ details.more > .facts { margin-bottom: 8px; }
   .peek .x { position: absolute; top: 4px; right: 6px; border: 0; background: none; color: var(--muted); font-size: 20px;
     width: 36px; height: 36px; cursor: pointer; }
   .pin { font-size: 10px; padding: 1px 5px; }
+  .cmp-overlay:not([hidden]) { padding: 0; }
+  .cmp-panel { border-radius: 0; height: 100%; }
+  .cmp-head { padding-top: calc(12px + env(safe-area-inset-top, 0px)); }
+  .fchip { min-height: 38px; }
   .leaflet-control-layers-expanded { font-size: 14px; max-height: 60vh; overflow-y: auto; }
 }
 @media (prefers-reduced-motion: reduce) { .card { transition: none; } }
@@ -165,7 +206,7 @@ details.more > .facts { margin-bottom: 8px; }
       <h1>Mines'e yakın konaklama</h1>
       <p class="trip"><b>13–22 Kasım</b> · 9 gece · 3 kişi · hedef <b>Mines Paris</b>, 60 Bd Saint-Michel</p>
     </header>
-    <p class="note" id="status"></p>
+    <details class="note"><summary id="status"></summary><p id="status-more"></p></details>
     <div class="controls">
       <span class="lbl">Sırala</span>
       <div class="seg" role="group" aria-label="Sıralama">
@@ -175,12 +216,25 @@ details.more > .facts { margin-bottom: 8px; }
         <button id="s-rating" data-k="rating" aria-pressed="false">Puan</button>
       </div>
     </div>
+    <div class="filters" role="group" aria-label="Filtreler">
+      <button class="fchip" id="f-rooms" data-f="rooms" aria-pressed="false">2 ayrı oda</button>
+      <button class="fchip" id="f-budget" data-f="budget" aria-pressed="false">Bütçe içi</button>
+      <button class="fchip" id="f-near" data-f="near" aria-pressed="false">≤ 40 dk</button>
+      <button class="fchip" id="f-star" data-f="star" aria-pressed="false">★ Kısa liste</button>
+    </div>
+    <div class="countbar"><span id="count" aria-live="polite"></span><button class="cmp-open" id="cmp-open" type="button" hidden></button></div>
     <ul class="list" id="list"></ul>
     <div class="legend" id="legend"></div>
     <p class="gpt">Skor (100 üzerinden), önem sırasıyla: 2 ayrı yatak odası 40 (salondaki çekyat sayılmaz; oda dökümü yoksa 32, şüpheliyse 18); puan 15 (az yorumlu ilanın puanı platform ortalamasına çekilir) + yorumlar 10 (son 2 yılın 3★ altı yorumları toplam yorumun %8'ine ulaşınca 0; izinsiz giriş iddiası −5); Mines'e kapıdan kapıya süre 20 (15 dk tam, 40 dk sıfır, sonrası dakika başı −0,5); fiyat: 65.000 TL bütçe içinde 3–15, bütçe üstü her 1.000 TL −2 (en çok −15). Fiyatı belli olmayan ilan en fazla 45 alır. Süreler elle girildi. Km değerleri kuş uçuşu; istasyon mesafesi kuş uçuşu, yürüme biraz daha uzun. Airbnb konumları platformun kaydırdığı yaklaşık konum (kesikli daire ≈ 300 m). Gerçek kapıdan kapıya süre için her kartta Google Maps rotası var.</p>
   </aside>
   <div id="map" role="region" aria-label="Harita: ilanlar, Mines ve raylı hatlar"></div>
   <div class="peek" id="peek" hidden></div>
+  <div class="cmp-overlay" id="cmp" hidden role="dialog" aria-modal="true" aria-labelledby="cmp-title">
+    <div class="cmp-panel">
+      <div class="cmp-head"><h2 id="cmp-title">Karşılaştırma</h2><button id="cmp-close" type="button">Kapat</button></div>
+      <div class="cmp-scroll" id="cmp-body"></div>
+    </div>
+  </div>
   <nav class="tabs" aria-label="Görünüm">
     <div class="seg" role="group">
       <button id="v-list" data-v="list" aria-pressed="true">Liste</button>
@@ -259,7 +313,7 @@ details.more > .facts { margin-bottom: 8px; }
 
   // ilanlar
   const markers = {};
-  const rings = L.layerGroup().addTo(map);
+  const ringLayer = L.layerGroup().addTo(map), rings = {};
   D.listings.filter(x => x.lat != null).forEach(x => {
     const pr = x.price_total_try == null ? "?" : "₺" + (x.price_total_try / 1000).toLocaleString("tr-TR", { maximumFractionDigits: 1 }) + "k";
     const html = `<span class="pin" data-id="${x.id}" style="background:var(${tier(x.score)})">${x.id}<b>${pr}</b>${x.transit_min != null ? `<b>${x.transit_min}′</b>` : ""}</span>`;
@@ -269,15 +323,16 @@ details.more > .facts { margin-bottom: 8px; }
       { direction: "top", offset: [0, -10] });
     markers[x.id] = m;
     if (x.location_precision === "approx")
-      L.circle([x.lat, x.lng], { radius: 300, color: css("--ink"), weight: 1, dashArray: "4 4", fill: false, interactive: false }).addTo(rings);
+      rings[x.id] = L.circle([x.lat, x.lng], { radius: 300, color: css("--ink"), weight: 1, dashArray: "4 4", fill: false, interactive: false }).addTo(ringLayer);
   });
   const pts = D.listings.filter(x => x.lat != null).map(x => [x.lat, x.lng]).concat([[D.mines.lat, D.mines.lng]]);
   map.fitBounds(pts, { padding: [40, 40] });
 
   // durum notu
   const n = D.listings.length, priced = D.listings.filter(x => x.price_total_try != null).length;
-  document.getElementById("status").innerHTML =
-    `<strong>${n} / ${D.total} ilan okundu, ${priced} tanesinde 13–22 Kasım · 3 kişi fiyatı var.</strong> Fiyatlar ödeme ekranındaki vergi dahil toplam. Etiketlerdeki ′ işareti Mines'e kapıdan kapıya toplu taşıma süresi (dakika).`;
+  document.getElementById("status").textContent = `${n} ilan · fiyatlar vergi dahil · ′ = Mines'e dakika`;
+  document.getElementById("status-more").textContent =
+    `${priced} ilanın 13–22 Kasım, 3 kişi fiyatı ödeme ekranından alındı (vergi dahil toplam). Etiketlerdeki ′ işareti Mines'e kapıdan kapıya toplu taşıma süresi. Skorun nasıl hesaplandığı sayfanın en altında.`;
 
   // lejant
   const tiers = [["--s1", "çok iyi"], ["--s2", "iyi"], ["--s3", "orta"], ["--s4", "zayıf"], ["--s5", "kötü"]];
@@ -318,7 +373,7 @@ details.more > .facts { margin-bottom: 8px; }
     return `<li class="card" tabindex="0" data-id="${x.id}">
       <div class="top"><span class="rank">#${x.rank}</span><span class="id">${x.id}</span><span class="score" style="background:var(${tier(x.score)})">${x.score}</span>
         <span class="plat">${x.platform}${x.review_count ? ` · ${x.review_count} yorum` : ""}</span>
-        <span class="prec">${x.location_precision === "exact" ? "kesin adres" : "yaklaşık konum"}</span></div>
+        <span class="prec">${x.location_precision === "exact" ? "kesin adres" : "yaklaşık konum"}</span>${starBtn(x.id)}</div>
       <div class="head"><img class="thumb" src="img/${x.id}.jpg" alt="" loading="lazy" width="104" height="78" onerror="this.remove()">
         <div><h2 class="title">${esc(x.title)}</h2></div></div>
       <div class="metrics">${metric("Mines'e", x.transit_min != null
@@ -331,6 +386,7 @@ details.more > .facts { margin-bottom: 8px; }
         <div class="facts">${facts.slice(1).map(f => `<div>${f}</div>`).join("")}</div>
         ${rev}
         ${x.notes ? `<div class="gpt">Not: ${esc(x.notes)}</div>` : ""}
+        <div class="breakdown">Skor ${x.score} = ${Object.entries(x.score_parts).map(([k, v]) => `${k} ${v}`).join(" · ")}</div>
       </details>
       <div class="links"><a href="${esc(x.url)}" target="_blank" rel="noopener">İlanı aç ↗</a>
         ${x.gmaps_transit_url ? `<a href="${esc(x.gmaps_transit_url)}" target="_blank" rel="noopener">Mines'e rota ↗</a>` : ""}</div>
@@ -340,21 +396,114 @@ details.more > .facts { margin-bottom: 8px; }
   let sortKey = "score", selected = null;
   const keyFn = { score: x => -x.score, dist: x => x.transit_min ?? (x.dist_mines_km ?? 1e3) * 10, price: x => x.price_total_try ?? 1e12,
     rating: x => -(x.rating == null ? -1 : x.rating / x.rating_scale) };
+  // kısa liste bu tarayıcıda saklanır (gizli pencerede/engelli depolamada sadece oturum boyunca)
+  const STORE = "parisev-kisa-liste";
+  let starred = new Set();
+  try { starred = new Set(JSON.parse(localStorage.getItem(STORE) || "[]")); } catch (e) {}
+  const saveStars = () => { try { localStorage.setItem(STORE, JSON.stringify([...starred])); } catch (e) {} };
+  function starBtn(id) {
+    const on = starred.has(id);
+    return `<button class="star" type="button" data-star="${id}" aria-pressed="${on}" aria-label="${on ? "Kısa listeden çıkar" : "Kısa listeye ekle"}">${on ? "★" : "☆"}</button>`;
+  }
+  function toggleStar(id) {
+    starred.has(id) ? starred.delete(id) : starred.add(id);
+    saveStars(); render();
+    const x = D.listings.find(l => l.id === id);
+    if (!peek.hidden && peek.dataset.id === id) showPeek(x);
+  }
+
+  const filters = { rooms: false, budget: false, near: false, star: false };
+  const passes = x =>
+    (!filters.rooms || x.rooms_status === "onaylı" || x.rooms_status === "doğrulanmalı") &&
+    (!filters.budget || (x.price_total_try != null && x.price_total_try <= D.budget)) &&
+    (!filters.near || (x.transit_min != null && x.transit_min <= 40)) &&
+    (!filters.star || starred.has(x.id));
+
   function render() {
-    const rows = [...D.listings].sort((a, b) => keyFn[sortKey](a) - keyFn[sortKey](b));
+    const vis = D.listings.filter(passes);
+    // kısa listedekiler seçili sıralamanın içinde en üste
+    const rows = vis.sort((a, b) => (starred.has(b.id) - starred.has(a.id)) || keyFn[sortKey](a) - keyFn[sortKey](b));
     const ul = document.getElementById("list");
-    ul.innerHTML = rows.map(card).join("");
+    ul.innerHTML = rows.length ? rows.map(card).join("")
+      : `<li class="empty">Bu filtrelerle ilan kalmadı. Bir filtreyi kapatmayı dene.</li>`;
     ul.querySelectorAll(".card").forEach(el => {
-      el.addEventListener("click", e => { if (!e.target.closest("a,summary,details")) select(el.dataset.id, true); });
-      el.addEventListener("keydown", e => { if (e.key === "Enter") select(el.dataset.id, true); });
+      el.addEventListener("click", e => { if (!e.target.closest("a,summary,details,button")) select(el.dataset.id, true); });
+      el.addEventListener("keydown", e => { if (e.key === "Enter" && e.target === el) select(el.dataset.id, true); });
     });
-    if (selected) mark(selected);
+    ul.querySelectorAll("[data-star]").forEach(b => b.addEventListener("click", e => { e.stopPropagation(); toggleStar(b.dataset.star); }));
+
+    const show = new Set(rows.map(x => x.id));
+    Object.entries(markers).forEach(([id, m]) => {
+      show.has(id) ? m.addTo(map) : m.remove();
+      if (rings[id]) show.has(id) ? rings[id].addTo(ringLayer) : rings[id].remove();
+    });
+    document.getElementById("count").textContent =
+      `${rows.length} / ${D.listings.length} ilan${starred.size ? ` · ${starred.size} kısa listede` : ""}`;
+    const cb = document.getElementById("cmp-open");
+    cb.hidden = starred.size < 2;
+    cb.textContent = `Karşılaştır (${starred.size})`;
+    mark(selected);  // pin DOM'u yeniden eklenince seçili/yıldız sınıfları kaybolur
   }
   function mark(id) {
     document.querySelectorAll(".card").forEach(c => c.classList.toggle("sel", c.dataset.id === id));
-    document.querySelectorAll(".pin").forEach(p => p.classList.toggle("sel", p.dataset.id === id));
-    Object.entries(markers).forEach(([k, m]) => m.setZIndexOffset(k === id ? 900 : 500));
+    document.querySelectorAll(".pin").forEach(p => {
+      p.classList.toggle("sel", p.dataset.id === id);
+      p.classList.toggle("starred", starred.has(p.dataset.id));
+    });
+    Object.entries(markers).forEach(([k, m]) => m.setZIndexOffset(k === id ? 900 : starred.has(k) ? 700 : 500));
   }
+
+  // karşılaştırma: kısa listedeki ilanlar yan yana, satır başına en iyi değer yeşil
+  const cmp = document.getElementById("cmp");
+  function openCompare() {
+    const xs = D.listings.filter(x => starred.has(x.id)).sort((a, b) => b.score - a.score);
+    const best = (f, lowIsGood) => {
+      const v = xs.map(f).filter(x => x != null);
+      return v.length ? (lowIsGood ? Math.min(...v) : Math.max(...v)) : null;
+    };
+    const roomsTxt = { "onaylı": "✓ 2 ayrı oda", "doğrulanmalı": "2 oda (teyit et)", "şüpheli": "ayrı oda şüpheli", "yok": "2 ayrı oda yok" };
+    const rows = [
+      ["Skor", x => x.score, x => String(x.score), false],
+      ["Fiyat (9 gece)", x => x.price_total_try, x => fmtTL(x.price_total_try) ?? "—", true],
+      ["Mines'e", x => x.transit_min, x => x.transit_min != null ? fmtMin(x.transit_min) : "—", true],
+      ["Odalar", null, x => roomsTxt[x.rooms_status] + (x.bed_layout ? `<br><span class="dim">${esc(x.bed_layout.slice(0, 120))}</span>` : "")],
+      ["Puan", x => x.rating == null ? null : x.rating / x.rating_scale, x => x.rating == null ? "—" : `${String(x.rating).replace(".", ",")}/${x.rating_scale} · ${x.review_count} yorum`, false],
+      ["Kötü yorum", x => x.low_reviews == null ? null : x.low_reviews.length, x => x.low_reviews == null ? "taranmadı" : `${x.low_reviews.length} (son 2 yıl, ≤3★)`, true],
+      ["İstasyon", null, x => { const s = (x.nearest_stations || [])[0]; return s ? `${esc(s.name)} · ${s.lines.map(esc).join(", ")} · ~${s.dist_m} m` : "—"; }],
+      ["İptal", null, x => esc(x.cancellation || "—")],
+      ["Giriş", null, x => esc(x.checkin_time || "—")],
+      ["Not", null, x => esc(x.notes || "—")],
+    ];
+    const head = `<thead><tr><th scope="row"></th>${xs.map(x => `<td><img src="img/${x.id}.jpg" alt="" onerror="this.remove()">
+      <span class="id">${x.id}</span> ${esc(x.title)}<br><button type="button" data-unstar="${x.id}">Listeden çıkar</button></td>`).join("")}</tr></thead>`;
+    const body = rows.map(([label, num, fmt, lowIsGood]) => {
+      const b = num ? best(num, lowIsGood) : null;
+      return `<tr><th scope="row">${label}</th>${xs.map(x => {
+        const v = num ? num(x) : null;
+        const cls = num && xs.length > 1 && v != null && v === b ? ' class="best"' : "";
+        return `<td${cls}>${fmt(x)}</td>`;
+      }).join("")}</tr>`;
+    }).join("");
+    const links = `<tr><th scope="row">Bağlantılar</th>${xs.map(x => `<td><a href="${esc(x.url)}" target="_blank" rel="noopener">İlanı aç ↗</a>
+      ${x.gmaps_transit_url ? `<br><a href="${esc(x.gmaps_transit_url)}" target="_blank" rel="noopener">Mines'e rota ↗</a>` : ""}</td>`).join("")}</tr>`;
+    document.getElementById("cmp-body").innerHTML = `<table>${head}<tbody>${body}${links}</tbody></table>`;
+    document.querySelectorAll("[data-unstar]").forEach(b => b.addEventListener("click", () => {
+      toggleStar(b.dataset.unstar);
+      starred.size >= 2 ? openCompare() : closeCompare();
+    }));
+    cmp.hidden = false;
+    document.getElementById("cmp-close").focus();
+  }
+  function closeCompare() { cmp.hidden = true; document.getElementById("cmp-open").focus(); }
+  document.getElementById("cmp-open").addEventListener("click", openCompare);
+  document.getElementById("cmp-close").addEventListener("click", closeCompare);
+  cmp.addEventListener("click", e => { if (e.target === cmp) closeCompare(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !cmp.hidden) closeCompare(); });
+  document.querySelectorAll(".fchip").forEach(b => b.addEventListener("click", () => {
+    filters[b.dataset.f] = !filters[b.dataset.f];
+    b.setAttribute("aria-pressed", String(filters[b.dataset.f]));
+    render();
+  }));
   const app = document.getElementById("app"), peek = document.getElementById("peek");
   const reduced = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
   function setView(v) {
@@ -371,11 +520,14 @@ details.more > .facts { margin-bottom: 8px; }
         <h2 class="title">${esc(x.title)}</h2>
         <div class="line"><b>${fmtTL(x.price_total_try) ?? "fiyat yok"}</b>${x.transit_min != null ? ` · ${fmtMin(x.transit_min)}` : ""} · ${rm}</div>
         <div class="acts"><button class="pri" type="button" data-act="detail">Detay</button>
-          <a href="${esc(x.url)}" target="_blank" rel="noopener">İlanı aç ↗</a></div>
+          <a href="${esc(x.url)}" target="_blank" rel="noopener">İlanı aç ↗</a>
+          <button type="button" data-act="star" aria-pressed="${starred.has(x.id)}" aria-label="Kısa liste">${starred.has(x.id) ? "★" : "☆"}</button></div>
       </div>
       <button class="x" type="button" aria-label="Kapat">×</button>`;
     peek.hidden = false;
+    peek.dataset.id = x.id;
     peek.querySelector(".x").onclick = () => { peek.hidden = true; };
+    peek.querySelector('[data-act="star"]').onclick = () => toggleStar(x.id);
     peek.querySelector('[data-act="detail"]').onclick = () => {
       setView("list");
       const c = document.querySelector(`.card[data-id="${x.id}"]`);
