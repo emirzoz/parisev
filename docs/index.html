@@ -158,7 +158,9 @@ window.PARIS_BASE={"communes":[{"n":"Paris 1er Arrondissement","paris":true,"r":
   map.attributionControl.setPrefix(false).addAttribution("Hatlar: Île-de-France Mobilités · sınırlar: geo.api.gouv.fr · nehirler: © OpenStreetMap");
   // Yerelde ve GitHub Pages'te gerçek karolar; artifact içinde dış görseller engelli, vektör altlık yeterli.
   if (location.protocol === "file:" || location.hostname.endsWith("github.io")) {
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png", { opacity: .55, maxZoom: 19 }).addTo(map);
+    // Carto artık anahtar istiyor (karolara filigran basıyor); Esri açık gri anahtarsız çalışıyor
+    L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}",
+      { opacity: .6, maxZoom: 16, attribution: "Altlık: Esri, HERE, Garmin, © OpenStreetMap" }).addTo(map);
   }
 
   const baseLayer = L.layerGroup().addTo(map);
