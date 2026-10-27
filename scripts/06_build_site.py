@@ -32,7 +32,14 @@ def main():
         with ex.open(encoding="utf-8") as f:
             excluded = {e["id"] for e in csv.DictReader(f)}
     (DOCS / "img").mkdir(parents=True, exist_ok=True)
-    shutil.copy2(out, DOCS / "index.html")
+    # artifact yayını doctype/head/viewport'u kendisi ekliyor; GitHub Pages için biz ekliyoruz,
+    # yoksa telefon sayfayı 980 px masaüstü genişliğinde açıyor
+    head = ('<!doctype html>\n<html lang="tr">\n<head>\n<meta charset="utf-8">\n'
+            '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
+            '<meta name="theme-color" content="#142033">\n'
+            '<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}'
+            'body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>\n</head>\n<body>\n')
+    (DOCS / "index.html").write_text(head + html + "\n</body>\n</html>\n", encoding="utf-8")
     for old in (DOCS / "img").glob("*.jpg"):
         old.unlink()
     for img in (SITE / "img").glob("*.jpg"):

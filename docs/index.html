@@ -1,3 +1,12 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#142033">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
 <title>Mines Konaklama Haritası</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -108,18 +117,58 @@ summary.ok { color: var(--muted); font-weight: 400; cursor: default; list-style:
 .leaflet-tooltip { font-size: 12px; }
 .leaflet-control-layers, .leaflet-bar a { background: var(--panel); color: var(--ink); }
 .leaflet-control-layers { border-radius: 10px; font-size: 13px; }
+/* Leaflet'in layers.png ikonu dosya olarak yok; yerine yazı */
+.leaflet-control-layers-toggle { background-image: none !important; width: auto !important; height: 36px !important;
+  padding: 0 12px; display: flex !important; align-items: center; font: 700 13px var(--f-body); color: var(--ink); text-decoration: none; }
+.leaflet-control-layers-toggle::after { content: "Katmanlar"; }
+.leaflet-control-layers-expanded .leaflet-control-layers-toggle { display: none !important; }
 
+details.more > summary { color: var(--ink); font-weight: 700; padding: 4px 0; }
+details.more[open] > summary { margin-bottom: 6px; }
+details.more > .facts { margin-bottom: 8px; }
+
+/* telefon: alt sekme (Liste / Harita), ikisi de tam ekran; haritada dokunulan ilan için önizleme kartı */
+.tabs, .peek { display: none; }
 @media (max-width: 760px) {
-  html, body { height: auto; }
-  .app { display: flex; flex-direction: column; height: auto; }
-  #map { height: 56vh; min-height: 320px; order: -1; }
-  .side { border-right: 0; overflow: visible; padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  html, body { height: 100%; overflow: hidden; }
+  .app { display: block; position: relative; height: 100%; }
+  .side, #map { position: absolute; inset: 0; height: auto; }
+  .side { border-right: 0; overflow-y: auto; overscroll-behavior: contain;
+    padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px)); }
+  .app[data-view="list"] #map { visibility: hidden; }
+  .app[data-view="map"] .side { display: none; }
+  h1 { font-size: 22px; }
+  .seg button { min-height: 40px; padding: 8px 14px; font-size: 14px; }
+  .links a { padding: 10px 0; }
+  summary { padding: 6px 0; }
+  .tabs { display: flex; justify-content: center; position: fixed; left: 0; right: 0; bottom: 0; z-index: 1001; pointer-events: none;
+    padding: 8px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+  .tabs .seg { pointer-events: auto; background: var(--panel); box-shadow: 0 4px 16px rgba(0,0,0,.25); }
+  .tabs button { min-height: 44px; min-width: 112px; font-size: 15px; }
+  .peek:not([hidden]) { display: flex; gap: 10px; position: fixed; z-index: 1000;
+    left: max(12px, env(safe-area-inset-left, 0px)); right: max(12px, env(safe-area-inset-right, 0px));
+    bottom: calc(70px + env(safe-area-inset-bottom, 0px));
+    background: var(--panel); border-radius: 16px; padding: 10px; box-shadow: 0 6px 24px rgba(0,0,0,.3); }
+  .peek img { width: 92px; height: 92px; border-radius: 10px; object-fit: cover; flex: none; background: var(--hair); }
+  .peek .body { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 3px; }
+  .peek .title { font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .peek .line { font-size: 13px; font-variant-numeric: tabular-nums; }
+  .peek .acts { display: flex; gap: 8px; margin-top: auto; }
+  .peek .acts a, .peek .acts button { font: 700 13px var(--f-body); border-radius: 999px; padding: 8px 12px; text-decoration: none;
+    border: 1px solid var(--hair); background: none; color: var(--ink); cursor: pointer; min-height: 36px; white-space: nowrap; }
+  .app[data-view="map"] .leaflet-bottom { bottom: calc(64px + env(safe-area-inset-bottom, 0px)); }
+  .leaflet-control-attribution { font-size: 9px; }
+  .peek .acts button.pri { background: var(--ink); color: var(--panel); border-color: var(--ink); }
+  .peek .x { position: absolute; top: 4px; right: 6px; border: 0; background: none; color: var(--muted); font-size: 20px;
+    width: 36px; height: 36px; cursor: pointer; }
+  .pin { font-size: 10px; padding: 1px 5px; }
+  .leaflet-control-layers-expanded { font-size: 14px; max-height: 60vh; overflow-y: auto; }
 }
 @media (prefers-reduced-motion: reduce) { .card { transition: none; } }
 </style>
 
-<div class="app">
-  <aside class="side">
+<div class="app" id="app" data-view="list">
+  <aside class="side" id="side">
     <header>
       <h1>Mines'e yakın konaklama</h1>
       <p class="trip"><b>13–22 Kasım</b> · 9 gece · 3 kişi · hedef <b>Mines Paris</b>, 60 Bd Saint-Michel</p>
@@ -139,6 +188,13 @@ summary.ok { color: var(--muted); font-weight: 400; cursor: default; list-style:
     <p class="gpt">Skor (100 üzerinden), önem sırasıyla: 2 ayrı yatak odası 40 (salondaki çekyat sayılmaz; oda dökümü yoksa 32, şüpheliyse 18); puan 15 + yorumlar 10 (son 2 yılın her 3★ altı yorumu −2,5, yorumlarda izinsiz giriş iddiası −5); Mines'e kapıdan kapıya süre 20 (15 dk tam, 55 dk sıfır, 1 saat üstü −5); vergi dahil fiyat 15. Fiyatı belli olmayan ilan en fazla 45 alır. Süreler elle girildi. Km değerleri kuş uçuşu; istasyon mesafesi kuş uçuşu, yürüme biraz daha uzun. Airbnb konumları platformun kaydırdığı yaklaşık konum (kesikli daire ≈ 300 m). Gerçek kapıdan kapıya süre için her kartta Google Maps rotası var.</p>
   </aside>
   <div id="map" role="region" aria-label="Harita: ilanlar, Mines ve raylı hatlar"></div>
+  <div class="peek" id="peek" hidden></div>
+  <nav class="tabs" aria-label="Görünüm">
+    <div class="seg" role="group">
+      <button id="v-list" data-v="list" aria-pressed="true">Liste</button>
+      <button id="v-map" data-v="map" aria-pressed="false">Harita</button>
+    </div>
+  </nav>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -148,6 +204,7 @@ window.PARIS_BASE={"communes":[{"n":"Paris 1er Arrondissement","paris":true,"r":
 (() => {
   const D = window.PARIS_DATA, B = window.PARIS_BASE;
   const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const mobile = () => matchMedia("(max-width: 760px)").matches;
   const fmtMin = m => m >= 60 ? `${Math.floor(m / 60)} sa ${m % 60} dk` : `${m} dk`;
   const fmtTL = n => n == null ? null : "₺" + n.toLocaleString("tr-TR");
   const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -217,7 +274,7 @@ window.PARIS_BASE={"communes":[{"n":"Paris 1er Arrondissement","paris":true,"r":
     const html = `<span class="pin" data-id="${x.id}" style="background:var(${tier(x.score)})">${x.id}<b>${pr}</b>${x.transit_min != null ? `<b>${x.transit_min}′</b>` : ""}</span>`;
     const m = L.marker([x.lat, x.lng], { icon: L.divIcon({ className: "", html, iconSize: null }), zIndexOffset: 500 + x.score })
       .on("click", () => select(x.id, false)).addTo(map);
-    m.bindTooltip(`<div class="tip"><img src="img/${x.id}.jpg" alt="" onerror="this.remove()"><span>${esc(x.title)}</span></div>`,
+    if (!mobile()) m.bindTooltip(`<div class="tip"><img src="img/${x.id}.jpg" alt="" onerror="this.remove()"><span>${esc(x.title)}</span></div>`,
       { direction: "top", offset: [0, -10] });
     markers[x.id] = m;
     if (x.location_precision === "approx")
@@ -266,7 +323,7 @@ window.PARIS_BASE={"communes":[{"n":"Paris 1er Arrondissement","paris":true,"r":
       x.checkin_time && `Giriş: ${esc(x.checkin_time)}`,
       x.over_budget && `<span class="warnbadge">Bütçe üstü (${fmtTL(D.budget)})</span>`,
       x.price_total_try == null && x.price_note && `<span class="warnbadge">${esc(x.price_note)}</span>`,
-    ].filter(Boolean).map(f => `<div>${f}</div>`).join("");
+    ].filter(Boolean);
     return `<li class="card" tabindex="0" data-id="${x.id}">
       <div class="top"><span class="rank">#${x.rank}</span><span class="id">${x.id}</span><span class="score" style="background:var(${tier(x.score)})">${x.score}</span>
         <span class="plat">${x.platform}${x.review_count ? ` · ${x.review_count} yorum` : ""}</span>
@@ -278,9 +335,12 @@ window.PARIS_BASE={"communes":[{"n":"Paris 1er Arrondissement","paris":true,"r":
           : x.dist_mines_km == null ? null : `${String(x.dist_mines_km).replace(".", ",")} km<small> kuş uçuşu</small>`)}
         ${metric("9 gece, vergi dahil", price)}${metric("Puan", rating)}</div>
       ${st ? `<div class="station">${chips}<span>${esc(st.name)}</span><span class="dim">~${st.dist_m} m</span></div>` : ""}
-      <div class="facts">${facts}</div>
-      ${rev}
-      ${x.notes ? `<div class="gpt">Not: ${esc(x.notes)}</div>` : ""}
+      <div class="facts"><div>${facts[0]}</div></div>
+      <details class="more"${mobile() ? "" : " open"}><summary>Detaylar</summary>
+        <div class="facts">${facts.slice(1).map(f => `<div>${f}</div>`).join("")}</div>
+        ${rev}
+        ${x.notes ? `<div class="gpt">Not: ${esc(x.notes)}</div>` : ""}
+      </details>
       <div class="links"><a href="${esc(x.url)}" target="_blank" rel="noopener">İlanı aç ↗</a>
         ${x.gmaps_transit_url ? `<a href="${esc(x.gmaps_transit_url)}" target="_blank" rel="noopener">Mines'e rota ↗</a>` : ""}</div>
     </li>`;
@@ -304,21 +364,55 @@ window.PARIS_BASE={"communes":[{"n":"Paris 1er Arrondissement","paris":true,"r":
     document.querySelectorAll(".pin").forEach(p => p.classList.toggle("sel", p.dataset.id === id));
     Object.entries(markers).forEach(([k, m]) => m.setZIndexOffset(k === id ? 900 : 500));
   }
+  const app = document.getElementById("app"), peek = document.getElementById("peek");
+  const reduced = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function setView(v) {
+    app.dataset.view = v;
+    document.querySelectorAll(".tabs button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.v === v)));
+    if (v === "map") map.invalidateSize(); else peek.hidden = true;
+  }
+  function showPeek(x) {
+    const rm = { "onaylı": `✓ ${x.bedrooms} ayrı oda`, "doğrulanmalı": `${x.bedrooms} oda (teyit et)`,
+      "şüpheli": "ayrı oda şüpheli", "yok": "2 ayrı oda yok" }[x.rooms_status];
+    peek.innerHTML = `<img src="img/${x.id}.jpg" alt="" onerror="this.remove()">
+      <div class="body">
+        <div class="top"><span class="rank">#${x.rank}</span><span class="id">${x.id}</span><span class="score" style="background:var(${tier(x.score)})">${x.score}</span></div>
+        <h2 class="title">${esc(x.title)}</h2>
+        <div class="line"><b>${fmtTL(x.price_total_try) ?? "fiyat yok"}</b>${x.transit_min != null ? ` · ${fmtMin(x.transit_min)}` : ""} · ${rm}</div>
+        <div class="acts"><button class="pri" type="button" data-act="detail">Detay</button>
+          <a href="${esc(x.url)}" target="_blank" rel="noopener">İlanı aç ↗</a></div>
+      </div>
+      <button class="x" type="button" aria-label="Kapat">×</button>`;
+    peek.hidden = false;
+    peek.querySelector(".x").onclick = () => { peek.hidden = true; };
+    peek.querySelector('[data-act="detail"]').onclick = () => {
+      setView("list");
+      const c = document.querySelector(`.card[data-id="${x.id}"]`);
+      c?.querySelector("details.more")?.setAttribute("open", "");
+      c?.scrollIntoView({ block: "start" });
+    };
+  }
   function select(id, fly) {
     selected = id; mark(id);
     const x = D.listings.find(l => l.id === id);
-    if (fly && x.lat != null) {
-      map.flyTo([x.lat, x.lng], Math.max(map.getZoom(), 14), { duration: matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : .6 });
-      if (window.innerWidth < 760) document.getElementById("map").scrollIntoView({ behavior: "smooth" });
+    if (mobile()) {
+      // telefonda kart da pin de haritaya götürür, altta önizleme açılır
+      if (app.dataset.view !== "map") setView("map");
+      if (x.lat != null) map.flyTo([x.lat, x.lng], Math.max(map.getZoom(), 13), { duration: reduced() ? 0 : .5 });
+      showPeek(x);
+    } else if (fly && x.lat != null) {
+      map.flyTo([x.lat, x.lng], Math.max(map.getZoom(), 14), { duration: reduced() ? 0 : .6 });
     } else {
       document.querySelector(`.card[data-id="${id}"]`)?.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
   }
-  document.querySelectorAll(".seg button").forEach(b => b.addEventListener("click", () => {
+  map.on("click", () => { peek.hidden = true; });
+  document.querySelectorAll(".controls .seg button").forEach(b => b.addEventListener("click", () => {
     sortKey = b.dataset.k;
-    document.querySelectorAll(".seg button").forEach(o => o.setAttribute("aria-pressed", String(o === b)));
+    document.querySelectorAll(".controls .seg button").forEach(o => o.setAttribute("aria-pressed", String(o === b)));
     render();
   }));
+  document.querySelectorAll(".tabs button").forEach(b => b.addEventListener("click", () => setView(b.dataset.v)));
   render();
 
   // tema değişince vektör altlığı yeniden boya
@@ -327,3 +421,6 @@ window.PARIS_BASE={"communes":[{"n":"Paris 1er Arrondissement","paris":true,"r":
   new MutationObserver(restyle).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
 })();
 </script>
+
+</body>
+</html>
