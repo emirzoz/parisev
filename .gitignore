@@ -1,0 +1,13 @@
+.venv/
+.pw-profile/
+.env
+__pycache__/
+~$*
+# ham veri yorumcu bilgileri içeriyor; herkese açık repoya konmaz
+raw/
+# Playwright MCP / Codex yerel dosyaları
+.codex/
+specs/
+seed.spec.ts
+# ara çıktılar (yayın docs/ altında)
+out/site/

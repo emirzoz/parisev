@@ -1,0 +1,4 @@
+openpyxl
+pyairbnb==2.2.2
+playwright==1.63.0
+pillow==13.0.0

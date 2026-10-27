@@ -1,0 +1,314 @@
+<title>Mines Konaklama Haritası</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;700&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>/*LEAFLET_CSS*/</style>
+<style>
+/* Layout: masaüstünde solda ilan listesi + sağda tam yükseklik harita; telefonda üstte harita, altta kartlar. */
+:root {
+  --paper: #eef1f4;      /* sayfa zemini, hafif soğuk gri */
+  --panel: #ffffff;
+  --ink: #142033;        /* metin + işaretçiler */
+  --muted: #5d6a7c;
+  --hair: #d5dbe3;
+  --accent: #e8a200;     /* metro tabelası sarısı: seçili ilan, Mines */
+  --warn: #b4441c;
+  --land: #e4e8ed; --land-paris: #d9dfe6; --border: #c3cbd5; --water: #d3d9df;
+  /* skor kademeleri: iyi → kötü */
+  --s1: #1f7a4d; --s2: #4f9a3a; --s3: #c99a06; --s4: #d9661f; --s5: #b8322c; --s0: #7d8794;
+  --f-display: "Familjen Grotesk", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #0f1622; --panel: #161f2d; --ink: #e6ebf2; --muted: #95a2b4; --hair: #2a3546;
+  --accent: #f4b520; --warn: #f08a5d;
+  --land: #172131; --land-paris: #1d2a3d; --border: #2d3a4e; --water: #243041; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --paper: #0f1622; --panel: #161f2d; --ink: #e6ebf2; --muted: #95a2b4; --hair: #2a3546;
+  --accent: #f4b520; --warn: #f08a5d;
+  --land: #172131; --land-paris: #1d2a3d; --border: #2d3a4e; --water: #243041; color-scheme: dark }
+
+html, body { height: 100%; }
+body { background: var(--paper); color: var(--ink); font: 15px/1.45 var(--f-body); }
+.app { display: grid; grid-template-columns: minmax(340px, 420px) 1fr; height: 100%; }
+.side { overflow-y: auto; background: var(--panel); border-right: 1px solid var(--hair);
+  padding-block: 20px 32px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: 16px;
+  display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+#map { height: 100%; background: var(--land); }
+
+h1 { font: 700 26px/1.1 var(--f-display); margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+.trip { color: var(--muted); margin: 6px 0 0; }
+.trip b { color: var(--ink); font-weight: 700; }
+.note { font-size: 13px; color: var(--muted); border-left: 3px solid var(--accent); padding: 2px 0 2px 10px; margin: 0; }
+.note strong { color: var(--ink); }
+
+.controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.controls .lbl { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.seg { display: inline-flex; border: 1px solid var(--hair); border-radius: 999px; padding: 2px; }
+.seg button { font: 600 13px var(--f-body); color: var(--muted); background: none; border: 0; border-radius: 999px;
+  padding: 6px 12px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--panel); }
+.seg button:focus-visible, .card:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.list { display: flex; flex-direction: column; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.card { border: 1px solid var(--hair); border-radius: 14px; padding: 12px 14px; cursor: pointer;
+  display: flex; flex-direction: column; gap: 8px; transition: border-color .15s; min-width: 0; }
+.card:hover { border-color: var(--muted); }
+.card.sel { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.top { display: flex; align-items: baseline; gap: 8px; }
+.id { font: 500 12px var(--f-mono); background: var(--ink); color: var(--panel); border-radius: 6px; padding: 1px 6px; }
+.plat { font-size: 12px; color: var(--muted); }
+.prec { font-size: 12px; color: var(--muted); margin-left: auto; }
+.title { font: 700 16px/1.25 var(--f-display); margin: 0; overflow-wrap: anywhere; }
+.metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; font-variant-numeric: tabular-nums; }
+.metrics div { display: flex; flex-direction: column; }
+.metrics span { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.metrics b { font-size: 15px; }
+.metrics .na { color: var(--muted); font-weight: 400; font-size: 13px; }
+.station { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 13px; }
+.chip { font: 700 11px var(--f-body); color: #fff; border-radius: 4px; padding: 1px 5px; }
+.dim { color: var(--muted); }
+details { font-size: 13px; }
+summary { cursor: pointer; color: var(--warn); font-weight: 700; }
+summary.ok { color: var(--muted); font-weight: 400; cursor: default; list-style: none; }
+.rev { margin: 6px 0 0; padding-left: 10px; border-left: 2px solid var(--hair); }
+.rev small { color: var(--muted); display: block; }
+.links { display: flex; gap: 14px; font-size: 13px; }
+.links a { color: var(--ink); font-weight: 700; }
+.gpt { font-size: 12px; color: var(--muted); }
+.legend { font-size: 12px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.legend i { display: inline-block; width: 18px; height: 4px; border-radius: 2px; vertical-align: middle; margin-right: 4px; }
+
+/* harita işaretçileri */
+.head { display: flex; gap: 12px; align-items: flex-start; }
+.head > div { min-width: 0; }
+.thumb { width: 104px; aspect-ratio: 4 / 3; flex: none; border-radius: 10px; object-fit: cover; background: var(--hair); }
+.tip { display: flex; flex-direction: column; gap: 4px; max-width: 200px; white-space: normal; }
+.tip img { width: 200px; aspect-ratio: 4 / 3; border-radius: 6px; object-fit: cover; }
+.rank { font: 700 13px var(--f-display); color: var(--muted); font-variant-numeric: tabular-nums; }
+.score { font: 700 12px var(--f-body); color: #fff; border-radius: 999px; padding: 1px 8px; font-variant-numeric: tabular-nums; }
+.metrics small { font-size: 11px; color: var(--muted); font-weight: 400; }
+.facts { font-size: 13px; display: flex; flex-direction: column; gap: 2px; }
+.facts b { font-weight: 700; }
+.warnbadge { color: var(--warn); font-weight: 700; }
+.pin { font: 500 11px var(--f-mono); background: var(--ink); color: #fff; border: 2px solid var(--panel);
+  border-radius: 999px; padding: 1px 6px; white-space: nowrap; box-shadow: 0 1px 4px rgba(0,0,0,.35);
+  transform: translate(-50%, -50%); display: inline-block; }
+.pin b { font-family: var(--f-body); font-weight: 700; margin-left: 4px; }
+.pin.sel { outline: 3px solid var(--accent); outline-offset: 1px; }
+.mines { font: 700 12px var(--f-display); background: var(--accent); color: #141414; border-radius: 6px;
+  padding: 3px 8px; transform: translate(-50%, -50%); display: inline-block; white-space: nowrap;
+  box-shadow: 0 1px 4px rgba(0,0,0,.35); }
+.leaflet-container { font-family: var(--f-body); background: var(--land); }
+.leaflet-tooltip { font-size: 12px; }
+.leaflet-control-layers, .leaflet-bar a { background: var(--panel); color: var(--ink); }
+.leaflet-control-layers { border-radius: 10px; font-size: 13px; }
+
+@media (max-width: 760px) {
+  html, body { height: auto; }
+  .app { display: flex; flex-direction: column; height: auto; }
+  #map { height: 56vh; min-height: 320px; order: -1; }
+  .side { border-right: 0; overflow: visible; padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+}
+@media (prefers-reduced-motion: reduce) { .card { transition: none; } }
+</style>
+
+<div class="app">
+  <aside class="side">
+    <header>
+      <h1>Mines'e yakın konaklama</h1>
+      <p class="trip"><b>13–22 Kasım</b> · 9 gece · 3 kişi · hedef <b>Mines Paris</b>, 60 Bd Saint-Michel</p>
+    </header>
+    <p class="note" id="status"></p>
+    <div class="controls">
+      <span class="lbl">Sırala</span>
+      <div class="seg" role="group" aria-label="Sıralama">
+        <button id="s-score" data-k="score" aria-pressed="true">Skor</button>
+        <button id="s-dist" data-k="dist" aria-pressed="false">Ulaşım</button>
+        <button id="s-price" data-k="price" aria-pressed="false">Fiyat</button>
+        <button id="s-rating" data-k="rating" aria-pressed="false">Puan</button>
+      </div>
+    </div>
+    <ul class="list" id="list"></ul>
+    <div class="legend" id="legend"></div>
+    <p class="gpt">Skor (100 üzerinden), önem sırasıyla: 2 ayrı yatak odası 40 (salondaki çekyat sayılmaz; oda dökümü yoksa 32, şüpheliyse 18); puan 15 + yorumlar 10 (son 2 yılın her 3★ altı yorumu −2,5, yorumlarda izinsiz giriş iddiası −5); Mines'e kapıdan kapıya süre 20 (15 dk tam, 55 dk sıfır, 1 saat üstü −5); vergi dahil fiyat 15. Fiyatı belli olmayan ilan en fazla 45 alır. Süreler elle girildi. Km değerleri kuş uçuşu; istasyon mesafesi kuş uçuşu, yürüme biraz daha uzun. Airbnb konumları platformun kaydırdığı yaklaşık konum (kesikli daire ≈ 300 m). Gerçek kapıdan kapıya süre için her kartta Google Maps rotası var.</p>
+  </aside>
+  <div id="map" role="region" aria-label="Harita: ilanlar, Mines ve raylı hatlar"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>/*DATA*/</script>
+<script>
+(() => {
+  const D = window.PARIS_DATA, B = window.PARIS_BASE;
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const fmtMin = m => m >= 60 ? `${Math.floor(m / 60)} sa ${m % 60} dk` : `${m} dk`;
+  const fmtTL = n => n == null ? null : "₺" + n.toLocaleString("tr-TR");
+  const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  const tier = s => s >= 72 ? "--s1" : s >= 60 ? "--s2" : s >= 48 ? "--s3" : s >= 36 ? "--s4" : "--s5";
+
+  // hat → renk (istasyon çiplerinde resmi renk)
+  const lineColor = {};
+  D.lines.forEach(l => { lineColor[l.line] = l.color; });
+
+  const map = L.map("map", { preferCanvas: true, zoomControl: true, attributionControl: true }).setView([D.mines.lat, D.mines.lng], 12);
+  map.attributionControl.setPrefix(false).addAttribution("Hatlar: Île-de-France Mobilités · sınırlar: geo.api.gouv.fr · nehirler: © OpenStreetMap");
+  // Yerelde ve GitHub Pages'te gerçek karolar; artifact içinde dış görseller engelli, vektör altlık yeterli.
+  if (location.protocol === "file:" || location.hostname.endsWith("github.io")) {
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png", { opacity: .55, maxZoom: 19 }).addTo(map);
+  }
+
+  const baseLayer = L.layerGroup().addTo(map);
+  function drawBase() {
+    baseLayer.clearLayers();
+    B.communes.forEach(c => L.polygon(c.r, {
+      color: css("--border"), weight: c.paris ? .8 : .6, fillColor: c.paris ? css("--land-paris") : css("--land"),
+      fillOpacity: 1, interactive: false }).addTo(baseLayer));
+    B.rivers.forEach(r => L.polyline(r, { color: css("--water"), weight: 7, opacity: 1, lineCap: "round", interactive: false }).addTo(baseLayer));
+  }
+  drawBase();
+
+  // RER B öne çıkar; diğer hatlar ince ve soluk, bağlam için
+  const MODE = { RER: [1.8, .6], METRO: [1.3, .5], TRAMWAY: [1.1, .45], TRAIN: [1, .35] };
+  const groups = { RERB: L.layerGroup() };
+  Object.keys(MODE).forEach(m => { groups[m] = L.layerGroup(); });
+  D.lines.forEach(l => {
+    const isB = l.line === "RER B";
+    const [w, o] = isB ? [5.5, 1] : MODE[l.mode];
+    L.polyline(l.paths, { color: l.color, weight: w, opacity: o, dashArray: l.mode === "TRAIN" ? "5 4" : null })
+      .bindTooltip(l.line, { sticky: true }).addTo(isB ? groups.RERB : groups[l.mode]);
+  });
+  ["TRAIN", "TRAMWAY", "METRO", "RER", "RERB"].forEach(m => groups[m].addTo(map));
+
+  const stations = L.layerGroup();
+  D.stations.forEach(s => L.circleMarker([s.a, s.o], { radius: 3, weight: 1.2, color: css("--ink"), fillColor: css("--panel"), fillOpacity: 1 })
+    .bindTooltip(`${esc(s.n)} · ${s.l.map(esc).join(", ")}`).addTo(stations));
+  const syncStations = () => map.getZoom() >= 13 ? stations.addTo(map) : stations.remove();
+  map.on("zoomend", syncStations);
+
+  L.marker([D.mines.lat, D.mines.lng], { icon: L.divIcon({ className: "", html: '<span class="mines">Mines</span>', iconSize: null }), zIndexOffset: 1000 })
+    .bindTooltip(D.mines.label).addTo(map);
+
+  const overlays = { "RER B": groups.RERB, "Diğer RER": groups.RER, "Metro": groups.METRO, "Tramvay": groups.TRAMWAY, "Transilien": groups.TRAIN, "İstasyonlar (yakınlaşınca)": stations };
+  L.control.layers(null, overlays, { collapsed: window.innerWidth < 760 }).addTo(map);
+
+  // ilanlar
+  const markers = {};
+  const rings = L.layerGroup().addTo(map);
+  D.listings.filter(x => x.lat != null).forEach(x => {
+    const pr = x.price_total_try == null ? "?" : "₺" + (x.price_total_try / 1000).toLocaleString("tr-TR", { maximumFractionDigits: 1 }) + "k";
+    const html = `<span class="pin" data-id="${x.id}" style="background:var(${tier(x.score)})">${x.id}<b>${pr}</b>${x.transit_min != null ? `<b>${x.transit_min}′</b>` : ""}</span>`;
+    const m = L.marker([x.lat, x.lng], { icon: L.divIcon({ className: "", html, iconSize: null }), zIndexOffset: 500 + x.score })
+      .on("click", () => select(x.id, false)).addTo(map);
+    m.bindTooltip(`<div class="tip"><img src="img/${x.id}.jpg" alt="" onerror="this.remove()"><span>${esc(x.title)}</span></div>`,
+      { direction: "top", offset: [0, -10] });
+    markers[x.id] = m;
+    if (x.location_precision === "approx")
+      L.circle([x.lat, x.lng], { radius: 300, color: css("--ink"), weight: 1, dashArray: "4 4", fill: false, interactive: false }).addTo(rings);
+  });
+  const pts = D.listings.filter(x => x.lat != null).map(x => [x.lat, x.lng]).concat([[D.mines.lat, D.mines.lng]]);
+  map.fitBounds(pts, { padding: [40, 40] });
+
+  // durum notu
+  const n = D.listings.length, priced = D.listings.filter(x => x.price_total_try != null).length;
+  document.getElementById("status").innerHTML =
+    `<strong>${n} / ${D.total} ilan okundu, ${priced} tanesinde 13–22 Kasım · 3 kişi fiyatı var.</strong> Fiyatlar ödeme ekranındaki vergi dahil toplam. Etiketlerdeki ′ işareti Mines'e kapıdan kapıya toplu taşıma süresi (dakika).`;
+
+  // lejant
+  const tiers = [["--s1", "çok iyi"], ["--s2", "iyi"], ["--s3", "orta"], ["--s4", "zayıf"], ["--s5", "kötü"]];
+  document.getElementById("legend").innerHTML =
+    tiers.map(([t, l]) => `<span><i style="background:var(${t})"></i>${l}</span>`).join("") +
+    `<span><i style="background:${lineColor["RER B"]}"></i>RER B</span><span><i style="background:${css("--accent")}"></i>Mines</span><span>Kesikli daire: Airbnb yaklaşık konum</span>`;
+
+  function metric(label, val, unit) {
+    return `<div><span>${label}</span>${val == null ? '<b class="na">yok</b>' : `<b>${val}${unit || ""}</b>`}</div>`;
+  }
+  function card(x) {
+    const st = (x.nearest_stations || [])[0];
+    const chips = st ? st.lines.map(l => `<span class="chip" style="background:${lineColor[l] || "#666"}">${esc(l.replace("METRO ", "M").replace("TRAM ", "T"))}</span>`).join("") : "";
+    const low = x.low_reviews;
+    let rev;
+    if (low == null) rev = `<details><summary class="ok">Yorum puanları bu platformda henüz taranmadı</summary></details>`;
+    else if (!low.length) rev = `<details><summary class="ok">Son 2 yılda 3★ ve altı yorum yok</summary></details>`;
+    else rev = `<details><summary>${low.length} düşük puanlı yorum (son 2 yıl)</summary>${low.map(r =>
+      `<p class="rev"><small>${r.stars}★ · ${r.date}</small>${esc(r.text)}</p>`).join("")}</details>`;
+    const rating = x.rating == null ? null : `${String(x.rating).replace(".", ",")}<small class="dim">/${x.rating_scale}</small>`;
+    const price = x.price_total_try == null ? null
+      : `${fmtTL(x.price_total_try)}${x.price_source === "ödeme ekranı ✓" ? "" : `<small> · ${esc(x.price_source)}</small>`}`;
+    const rooms = {
+      "onaylı": `<b>✓ ${x.bedrooms} ayrı yatak odası</b>`,
+      "doğrulanmalı": `<b>${x.bedrooms} yatak odası</b> <span class="dim">(oda dökümü yok, ev sahibine sor)</span>`,
+      "şüpheli": `<span class="warnbadge">${x.bedrooms} yatak odası yazıyor, ayrı oda şüpheli</span>`,
+      "yok": `<span class="warnbadge">${x.bedrooms === 0 ? "stüdyo" : "1 yatak odası"}, 2 ayrı oda yok</span>`,
+    }[x.rooms_status];
+    const facts = [
+      `${rooms}${x.max_guests ? ` · en fazla ${x.max_guests} kişi` : ""}${x.room_option ? ` · ${esc(x.room_option)}` : ""}`,
+      x.bed_layout && `<span class="dim">${esc(x.bed_layout.slice(0, 160))}</span>`,
+      x.address && `<span class="dim">${esc(x.address)}</span>`,
+      x.cancellation && `İptal: ${esc(x.cancellation.slice(0, 140))}`,
+      x.checkin_time && `Giriş: ${esc(x.checkin_time)}`,
+      x.over_budget && `<span class="warnbadge">Bütçe üstü (${fmtTL(D.budget)})</span>`,
+      x.price_total_try == null && x.price_note && `<span class="warnbadge">${esc(x.price_note)}</span>`,
+    ].filter(Boolean).map(f => `<div>${f}</div>`).join("");
+    return `<li class="card" tabindex="0" data-id="${x.id}">
+      <div class="top"><span class="rank">#${x.rank}</span><span class="id">${x.id}</span><span class="score" style="background:var(${tier(x.score)})">${x.score}</span>
+        <span class="plat">${x.platform}${x.review_count ? ` · ${x.review_count} yorum` : ""}</span>
+        <span class="prec">${x.location_precision === "exact" ? "kesin adres" : "yaklaşık konum"}</span></div>
+      <div class="head"><img class="thumb" src="img/${x.id}.jpg" alt="" loading="lazy" width="104" height="78" onerror="this.remove()">
+        <div><h2 class="title">${esc(x.title)}</h2></div></div>
+      <div class="metrics">${metric("Mines'e", x.transit_min != null
+          ? `${fmtMin(x.transit_min)}<small> · ${String(x.dist_mines_km).replace(".", ",")} km</small>`
+          : x.dist_mines_km == null ? null : `${String(x.dist_mines_km).replace(".", ",")} km<small> kuş uçuşu</small>`)}
+        ${metric("9 gece, vergi dahil", price)}${metric("Puan", rating)}</div>
+      ${st ? `<div class="station">${chips}<span>${esc(st.name)}</span><span class="dim">~${st.dist_m} m</span></div>` : ""}
+      <div class="facts">${facts}</div>
+      ${rev}
+      ${x.notes ? `<div class="gpt">Not: ${esc(x.notes)}</div>` : ""}
+      <div class="links"><a href="${esc(x.url)}" target="_blank" rel="noopener">İlanı aç ↗</a>
+        ${x.gmaps_transit_url ? `<a href="${esc(x.gmaps_transit_url)}" target="_blank" rel="noopener">Mines'e rota ↗</a>` : ""}</div>
+    </li>`;
+  }
+
+  let sortKey = "score", selected = null;
+  const keyFn = { score: x => -x.score, dist: x => x.transit_min ?? (x.dist_mines_km ?? 1e3) * 10, price: x => x.price_total_try ?? 1e12,
+    rating: x => -(x.rating == null ? -1 : x.rating / x.rating_scale) };
+  function render() {
+    const rows = [...D.listings].sort((a, b) => keyFn[sortKey](a) - keyFn[sortKey](b));
+    const ul = document.getElementById("list");
+    ul.innerHTML = rows.map(card).join("");
+    ul.querySelectorAll(".card").forEach(el => {
+      el.addEventListener("click", e => { if (!e.target.closest("a,summary,details")) select(el.dataset.id, true); });
+      el.addEventListener("keydown", e => { if (e.key === "Enter") select(el.dataset.id, true); });
+    });
+    if (selected) mark(selected);
+  }
+  function mark(id) {
+    document.querySelectorAll(".card").forEach(c => c.classList.toggle("sel", c.dataset.id === id));
+    document.querySelectorAll(".pin").forEach(p => p.classList.toggle("sel", p.dataset.id === id));
+    Object.entries(markers).forEach(([k, m]) => m.setZIndexOffset(k === id ? 900 : 500));
+  }
+  function select(id, fly) {
+    selected = id; mark(id);
+    const x = D.listings.find(l => l.id === id);
+    if (fly && x.lat != null) {
+      map.flyTo([x.lat, x.lng], Math.max(map.getZoom(), 14), { duration: matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : .6 });
+      if (window.innerWidth < 760) document.getElementById("map").scrollIntoView({ behavior: "smooth" });
+    } else {
+      document.querySelector(`.card[data-id="${id}"]`)?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  }
+  document.querySelectorAll(".seg button").forEach(b => b.addEventListener("click", () => {
+    sortKey = b.dataset.k;
+    document.querySelectorAll(".seg button").forEach(o => o.setAttribute("aria-pressed", String(o === b)));
+    render();
+  }));
+  render();
+
+  // tema değişince vektör altlığı yeniden boya
+  const restyle = () => { drawBase(); stations.eachLayer(s => s.setStyle({ color: css("--ink"), fillColor: css("--panel") })); };
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", restyle);
+  new MutationObserver(restyle).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+})();
+</script>
