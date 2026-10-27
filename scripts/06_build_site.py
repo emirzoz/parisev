@@ -5,6 +5,7 @@ docs/ GitHub Pages'in yayınladığı klasör.
 Kullanım: py scripts/06_build_site.py
 """
 import csv
+import json
 import shutil
 from pathlib import Path
 
@@ -17,7 +18,9 @@ DOCS = ROOT / "docs"
 def main():
     html = (ROOT / "site" / "template.html").read_text(encoding="utf-8")
     data = (SITE / "data.js").read_text(encoding="utf-8")
-    base = "window.PARIS_BASE=" + (GEO / "base.json").read_text(encoding="utf-8") + ";"
+    base = json.loads((GEO / "base.json").read_text(encoding="utf-8"))
+    base["landmarks"] = json.loads((ROOT / "data" / "landmarks.json").read_text(encoding="utf-8"))
+    base = "window.PARIS_BASE=" + json.dumps(base, ensure_ascii=False, separators=(",", ":")) + ";"
     html = html.replace("/*LEAFLET_CSS*/", (GEO / "leaflet.css").read_text(encoding="utf-8"))
     html = html.replace("/*DATA*/", data + "\n" + base)
     out = SITE / "index.html"

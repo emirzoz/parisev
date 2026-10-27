@@ -100,6 +100,10 @@ summary.ok { color: var(--muted); font-weight: 400; cursor: default; list-style:
 .mines { font: 700 12px var(--f-display); background: var(--accent); color: #141414; border-radius: 6px;
   padding: 3px 8px; transform: translate(-50%, -50%); display: inline-block; white-space: nowrap;
   box-shadow: 0 1px 4px rgba(0,0,0,.35); }
+.lm { display: inline-flex; align-items: center; gap: 4px; transform: translate(-5px, -50%); white-space: nowrap;
+  font: 700 11px/1 var(--f-display); color: var(--muted); text-shadow: 0 0 3px var(--paper), 0 0 3px var(--paper), 0 0 2px var(--paper); pointer-events: none; }
+.lm::before { content: ""; width: 7px; height: 7px; transform: rotate(45deg); background: var(--muted); border: 1.5px solid var(--paper); flex: none; }
+.lm.small { font-size: 10px; font-weight: 500; }
 .leaflet-container { font-family: var(--f-body); background: var(--land); }
 .leaflet-tooltip { font-size: 12px; }
 .leaflet-control-layers, .leaflet-bar a { background: var(--panel); color: var(--ink); }
@@ -190,10 +194,18 @@ summary.ok { color: var(--muted); font-weight: 400; cursor: default; list-style:
   const syncStations = () => map.getZoom() >= 13 ? stations.addTo(map) : stations.remove();
   map.on("zoomend", syncStations);
 
+  // önemli yerler: büyükler hep görünür, küçükler yakınlaşınca
+  const landmarks = L.layerGroup().addTo(map), landmarksSmall = L.layerGroup();
+  B.landmarks.forEach(l => L.marker([l.lat, l.lng], { interactive: false, keyboard: false, zIndexOffset: -100,
+    icon: L.divIcon({ className: "", html: `<span class="lm${l.big ? "" : " small"}">${esc(l.n)}</span>`, iconSize: null }) })
+    .addTo(l.big ? landmarks : landmarksSmall));
+  const syncLandmarks = () => map.hasLayer(landmarks) && map.getZoom() >= 13 ? landmarksSmall.addTo(map) : landmarksSmall.remove();
+  map.on("zoomend overlayadd overlayremove", syncLandmarks);
+
   L.marker([D.mines.lat, D.mines.lng], { icon: L.divIcon({ className: "", html: '<span class="mines">Mines</span>', iconSize: null }), zIndexOffset: 1000 })
     .bindTooltip(D.mines.label).addTo(map);
 
-  const overlays = { "RER B": groups.RERB, "Diğer RER": groups.RER, "Metro": groups.METRO, "Tramvay": groups.TRAMWAY, "Transilien": groups.TRAIN, "İstasyonlar (yakınlaşınca)": stations };
+  const overlays = { "RER B": groups.RERB, "Diğer RER": groups.RER, "Metro": groups.METRO, "Tramvay": groups.TRAMWAY, "Transilien": groups.TRAIN, "Önemli yerler": landmarks, "İstasyonlar (yakınlaşınca)": stations };
   L.control.layers(null, overlays, { collapsed: window.innerWidth < 760 }).addTo(map);
 
   // ilanlar

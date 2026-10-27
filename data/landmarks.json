@@ -1,0 +1,21 @@
+[
+  {"n": "Eyfel Kulesi", "lat": 48.8584, "lng": 2.2945, "big": true},
+  {"n": "Louvre", "lat": 48.8606, "lng": 2.3376, "big": true},
+  {"n": "Notre-Dame", "lat": 48.8530, "lng": 2.3499, "big": true},
+  {"n": "Arc de Triomphe", "lat": 48.8738, "lng": 2.2950, "big": true},
+  {"n": "Sacré-Cœur", "lat": 48.8867, "lng": 2.3431, "big": true},
+  {"n": "Panthéon", "lat": 48.8462, "lng": 2.3464},
+  {"n": "Lüksemburg Bahçesi", "lat": 48.8462, "lng": 2.3372},
+  {"n": "Musée d'Orsay", "lat": 48.8600, "lng": 2.3266},
+  {"n": "Centre Pompidou", "lat": 48.8607, "lng": 2.3522},
+  {"n": "Place de la Concorde", "lat": 48.8656, "lng": 2.3212},
+  {"n": "Opéra Garnier", "lat": 48.8720, "lng": 2.3316},
+  {"n": "Tour Montparnasse", "lat": 48.8421, "lng": 2.3219},
+  {"n": "Cité Universitaire", "lat": 48.8196, "lng": 2.3376},
+  {"n": "Gare du Nord", "lat": 48.8809, "lng": 2.3553},
+  {"n": "Stade de France", "lat": 48.9245, "lng": 2.3602},
+  {"n": "La Défense", "lat": 48.8925, "lng": 2.2380, "big": true},
+  {"n": "Versailles Sarayı", "lat": 48.8049, "lng": 2.1204, "big": true},
+  {"n": "Orly Havalimanı", "lat": 48.7262, "lng": 2.3652, "big": true},
+  {"n": "CDG Havalimanı", "lat": 49.0097, "lng": 2.5479, "big": true}
+]
