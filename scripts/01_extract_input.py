@@ -46,6 +46,17 @@ def main() -> None:
                 "notes": ws.cell(r, COLS["notes"]).value,
             }
         )
+    # orijinal tabloda olmayan, sonradan eklenen ilanlar (Paris_27_Ilan.xlsx'e dokunulmaz)
+    extra = ROOT / "data" / "extra_listings.csv"
+    if extra.exists():
+        with extra.open(encoding="utf-8") as f:
+            for e in csv.DictReader(f):
+                rows.append({
+                    "id": f"L{len(rows) + 1:02d}", "platform": e["platform"], "url": e["url"].strip(),
+                    "listing_key": listing_key(e["url"]), "gpt_name": e.get("name") or None,
+                    "gpt_price_base_try": None, "gpt_tax_try": None, "gpt_rooms": None, "gpt_rating": None,
+                    "notes": e.get("notes") or None,
+                })
     OUT.parent.mkdir(exist_ok=True)
     with OUT.open("w", newline="", encoding="utf-8-sig") as f:
         w = csv.DictWriter(f, fieldnames=list(rows[0]))

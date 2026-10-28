@@ -54,79 +54,82 @@
   "transit_min": 25,
   "transit_source": "kullanıcı, elle (2026-10-27)",
   "rooms_status": "onaylı",
-  "score": 84,
+  "rating_adj": 4.88,
+  "score": 79,
   "score_parts": {
    "oda": 40,
-   "puan": 14,
+   "puan": 13,
    "yorum": 10,
-   "ulaşım": 15,
-   "fiyat": 5
+   "ulaşım": 12,
+   "fiyat": 4
   },
   "over_budget": false,
   "rank": 1
  },
  {
-  "id": "L25",
-  "platform": "Airbnb",
-  "url": "https://www.airbnb.com.tr/rooms/1400000070296142652",
-  "notes": "Ulaşım ve durak bilgisi teyit edilmeli.",
-  "lat": 48.9397,
-  "lng": 2.2461,
-  "location_precision": "approx",
-  "title": "Güzel daire, balkon ve otopark",
-  "address": "Tüm kiralık konut, Argenteuil, Fransa",
-  "price_total_try": 45616,
-  "price_base_try": null,
-  "price_tax_try": null,
-  "price_note": "tüm ücretler dahil",
-  "rating": 4.95,
-  "rating_scale": 5,
-  "review_count": 39,
+  "id": "L06",
+  "platform": "Booking",
+  "url": "https://www.booking.com/hotel/fr/entire-apartment-f3-next-to-rer-b-antony.tr.html",
+  "notes": "25 yaş altı check-in yapılamıyor; 200 € nakit depozito; rezervasyon talebi; 10 Kasım öncesi ücretsiz iptal koşulunu kontrol et.",
+  "lat": 48.7390643,
+  "lng": 2.2928496,
+  "location_precision": "exact",
+  "title": "Entire apartment F3 next to RER B Antony",
+  "address": "4 Rue Maurice Brouard, 92160 Antony, Fransa",
+  "price_total_try": 59000,
+  "price_base_try": 51063,
+  "price_tax_try": 7543,
+  "price_note": "vergi ve masraflar dahil",
+  "rating": 8.0,
+  "rating_scale": 10,
+  "review_count": 29,
   "max_guests": 3,
   "bedrooms": 2,
-  "beds": 2,
-  "bed_layout": "1. yatak odası 1 kraliçe yatak 2. yatak odası 1 tek kişilik yatak Oturma odası 1 kanepe",
-  "room_option": null,
-  "cancellation": "Ücretsiz iptal son gün: 12 Kasım",
+  "beds": null,
+  "bed_layout": "Yatak Odası 1: 1 çift kişilik yatak; Yatak Odası 2: 2 tek kişilik yatak",
+  "room_option": "İki Yatak Odalı Daire",
+  "cancellation": "10 Kasım 2026 öncesinde ücretsiz iptal",
   "checkin_time": null,
-  "low_reviews": [],
-  "dist_mines_km": 12.5,
+  "low_reviews": null,
+  "dist_mines_km": 12.3,
   "nearest_stations": [
    {
-    "name": "Argenteuil",
+    "name": "Les Baconnets",
     "lines": [
-     "TRAIN J"
+     "RER B"
     ],
-    "dist_m": 1170
+    "dist_m": 390
    },
    {
-    "name": "Le Stade",
+    "name": "Fontaine Michalon",
     "lines": [
-     "TRAIN J"
+     "RER B"
     ],
-    "dist_m": 1390
+    "dist_m": 490
    },
    {
-    "name": "Val d'Argenteuil",
+    "name": "Massy - Verrières",
     "lines": [
-     "TRAIN J"
+     "RER C",
+     "RER B"
     ],
-    "dist_m": 1570
+    "dist_m": 1460
    }
   ],
-  "gmaps_transit_url": "https://www.google.com/maps/dir/?api=1&travelmode=transit&origin=48.9397,2.2461&destination=48.845632,2.339672",
-  "price_listed_try": 39629,
+  "gmaps_transit_url": "https://www.google.com/maps/dir/?api=1&travelmode=transit&origin=48.7390643,2.2928496&destination=48.845632,2.339672",
+  "price_listed_try": 58606,
   "price_source": "ödeme ekranı ✓",
-  "transit_min": 74,
+  "transit_min": 37,
   "transit_source": "kullanıcı, elle (2026-10-27)",
   "rooms_status": "onaylı",
-  "score": 75,
+  "rating_adj": 8.0,
+  "score": 63,
   "score_parts": {
    "oda": 40,
-   "puan": 15,
-   "yorum": 10,
-   "ulaşım": -5,
-   "fiyat": 15
+   "puan": 8,
+   "yorum": 6,
+   "ulaşım": 2,
+   "fiyat": 7
   },
   "over_budget": false,
   "rank": 2
@@ -187,228 +190,84 @@
   "transit_min": 42,
   "transit_source": "kullanıcı, elle (2026-10-27)",
   "rooms_status": "onaylı",
-  "score": 74,
+  "rating_adj": 4.88,
+  "score": 62,
   "score_parts": {
    "oda": 40,
-   "puan": 14,
+   "puan": 13,
    "yorum": 10,
-   "ulaşım": 6,
-   "fiyat": 4
+   "ulaşım": -1,
+   "fiyat": 0
   },
   "over_budget": true,
   "rank": 3
  },
  {
-  "id": "L18",
+  "id": "L25",
   "platform": "Airbnb",
-  "url": "https://www.airbnb.com.tr/rooms/1104536727716347677",
-  "notes": "Önceki tabloda A02; misafir yorumuna göre RER 3 dk; 12 Kasım ücretsiz iptal.",
-  "lat": 48.93208,
-  "lng": 2.4228,
+  "url": "https://www.airbnb.com.tr/rooms/1400000070296142652",
+  "notes": "Ulaşım ve durak bilgisi teyit edilmeli.",
+  "lat": 48.9397,
+  "lng": 2.2461,
   "location_precision": "approx",
-  "title": "Yeni Lux 60m² Tüm apart+Klima Paris yakınında",
-  "address": "Tüm kiralık konut, Le Bourget, Fransa",
-  "price_total_try": 70047,
+  "title": "Güzel daire, balkon ve otopark",
+  "address": "Tüm kiralık konut, Argenteuil, Fransa",
+  "price_total_try": 45616,
   "price_base_try": null,
   "price_tax_try": null,
   "price_note": "tüm ücretler dahil",
-  "rating": 4.88,
+  "rating": 4.95,
   "rating_scale": 5,
-  "review_count": 90,
-  "max_guests": 4,
+  "review_count": 39,
+  "max_guests": 3,
   "bedrooms": 2,
   "beds": 2,
-  "bed_layout": "1. yatak odası 1 çift kişilik yatak 2. yatak odası 1 çift kişilik yatak",
+  "bed_layout": "1. yatak odası 1 kraliçe yatak 2. yatak odası 1 tek kişilik yatak Oturma odası 1 kanepe",
   "room_option": null,
   "cancellation": "Ücretsiz iptal son gün: 12 Kasım",
-  "checkin_time": "14:00-22:00",
-  "low_reviews": [
-   {
-    "date": "2025-08-11",
-    "stars": 3,
-    "text": "Gurpreet himself gets 5 stars! He was always available and communicative! The apartment... Well, the day before arrival, Gurpreet wrote to me that there was water damage and a wall looks like it. However, the damage was not from 'yesterday', he could have mentioned this, especially since the apartment smelled and was moldy accordingly. Likewise, the walls are like paper. Above the apartment, you could hear trampling "
-   },
-   {
-    "date": "2025-07-18",
-    "stars": 2,
-    "text": "Decided on this let due to the strength of the reviews. I was contacted 3 days before the holiday to say there was a leak and water damage had occurred and the flat is ok to stay in. Given how casual this was mentioned and also with little time left to find an alternative I agreed to stay. The damp was very bad and appeared to be a long standing problem not something that happened 3 days before. The smell of damp was"
-   }
-  ],
-  "dist_mines_km": 11.4,
+  "checkin_time": null,
+  "low_reviews": [],
+  "dist_mines_km": 12.5,
   "nearest_stations": [
    {
-    "name": "Le Bourget",
+    "name": "Argenteuil",
     "lines": [
-     "RER B",
-     "TRAM 11"
+     "TRAIN J"
     ],
-    "dist_m": 260
+    "dist_m": 1170
    },
    {
-    "name": "La Courneuve - 8 Mai 1945",
+    "name": "Le Stade",
     "lines": [
-     "TRAM 1",
-     "METRO 7"
+     "TRAIN J"
     ],
-    "dist_m": 1540
+    "dist_m": 1390
    },
    {
-    "name": "Dugny - La Courneuve",
+    "name": "Val d'Argenteuil",
     "lines": [
-     "TRAM 11"
+     "TRAIN J"
     ],
     "dist_m": 1570
    }
   ],
-  "gmaps_transit_url": "https://www.google.com/maps/dir/?api=1&travelmode=transit&origin=48.93208,2.4228&destination=48.845632,2.339672",
-  "price_listed_try": 60723,
+  "gmaps_transit_url": "https://www.google.com/maps/dir/?api=1&travelmode=transit&origin=48.9397,2.2461&destination=48.845632,2.339672",
+  "price_listed_try": 39629,
   "price_source": "ödeme ekranı ✓",
-  "transit_min": 29,
+  "transit_min": 74,
   "transit_source": "kullanıcı, elle (2026-10-27)",
   "rooms_status": "onaylı",
-  "score": 72,
+  "rating_adj": 4.88,
+  "score": 61,
   "score_parts": {
    "oda": 40,
    "puan": 13,
-   "yorum": 5,
-   "ulaşım": 13,
-   "fiyat": 1
-  },
-  "over_budget": true,
-  "rank": 4
- },
- {
-  "id": "L24",
-  "platform": "Airbnb",
-  "url": "https://www.airbnb.com.tr/rooms/804454378659557391",
-  "notes": "Bütçeye çok yakın; ödeme aşamasında toplamı teyit et.",
-  "lat": 48.812,
-  "lng": 2.36,
-  "location_precision": "approx",
-  "title": "Paris 13'te 3 yatak odalı daire 800 m - WIFI",
-  "address": "Tüm otel olanakları sunan möbleli daire, Le Kremlin-Bicêtre, Fransa",
-  "price_total_try": 74542,
-  "price_base_try": null,
-  "price_tax_try": null,
-  "price_note": "tüm ücretler dahil",
-  "rating": 4.7,
-  "rating_scale": 5,
-  "review_count": 50,
-  "max_guests": 5,
-  "bedrooms": 3,
-  "beds": 3,
-  "bed_layout": "1. yatak odası 2 tek kişilik yatak 2. yatak odası 2 tek kişilik yatak 3. yatak odası 1 çift kişilik yatak Oturma odası 1 kanepe",
-  "room_option": null,
-  "cancellation": "24 saat süreyle ücretsiz iptal.",
-  "checkin_time": null,
-  "low_reviews": [],
-  "dist_mines_km": 4.0,
-  "nearest_stations": [
-   {
-    "name": "Le Kremlin - Bicêtre",
-    "lines": [
-     "METRO 7"
-    ],
-    "dist_m": 270
-   },
-   {
-    "name": "Châteaudun - Barbès",
-    "lines": [
-     "TRAM 9"
-    ],
-    "dist_m": 730
-   },
-   {
-    "name": "Cimetière Parisien d'Ivry",
-    "lines": [
-     "TRAM 9"
-    ],
-    "dist_m": 780
-   }
-  ],
-  "gmaps_transit_url": "https://www.google.com/maps/dir/?api=1&travelmode=transit&origin=48.812,2.36&destination=48.845632,2.339672",
-  "price_listed_try": 64861,
-  "price_source": "ödeme ekranı ✓",
-  "transit_min": 31,
-  "transit_source": "kullanıcı, elle (2026-10-27)",
-  "rooms_status": "onaylı",
-  "score": 71,
-  "score_parts": {
-   "oda": 40,
-   "puan": 9,
    "yorum": 10,
-   "ulaşım": 12,
-   "fiyat": 0
-  },
-  "over_budget": true,
-  "rank": 5
- },
- {
-  "id": "L06",
-  "platform": "Booking",
-  "url": "https://www.booking.com/hotel/fr/entire-apartment-f3-next-to-rer-b-antony.tr.html",
-  "notes": "25 yaş altı check-in yapılamıyor; 200 € nakit depozito; rezervasyon talebi; 10 Kasım öncesi ücretsiz iptal koşulunu kontrol et.",
-  "lat": 48.7390643,
-  "lng": 2.2928496,
-  "location_precision": "exact",
-  "title": "Entire apartment F3 next to RER B Antony",
-  "address": "4 Rue Maurice Brouard, 92160 Antony, Fransa",
-  "price_total_try": 59000,
-  "price_base_try": 51063,
-  "price_tax_try": 7543,
-  "price_note": "vergi ve masraflar dahil",
-  "rating": 8.0,
-  "rating_scale": 10,
-  "review_count": 29,
-  "max_guests": 3,
-  "bedrooms": 2,
-  "beds": null,
-  "bed_layout": "Yatak Odası 1: 1 çift kişilik yatak; Yatak Odası 2: 2 tek kişilik yatak",
-  "room_option": "İki Yatak Odalı Daire",
-  "cancellation": "10 Kasım 2026 öncesinde ücretsiz iptal",
-  "checkin_time": null,
-  "low_reviews": null,
-  "dist_mines_km": 12.3,
-  "nearest_stations": [
-   {
-    "name": "Les Baconnets",
-    "lines": [
-     "RER B"
-    ],
-    "dist_m": 390
-   },
-   {
-    "name": "Fontaine Michalon",
-    "lines": [
-     "RER B"
-    ],
-    "dist_m": 490
-   },
-   {
-    "name": "Massy - Verrières",
-    "lines": [
-     "RER C",
-     "RER B"
-    ],
-    "dist_m": 1460
-   }
-  ],
-  "gmaps_transit_url": "https://www.google.com/maps/dir/?api=1&travelmode=transit&origin=48.7390643,2.2928496&destination=48.845632,2.339672",
-  "price_listed_try": 58606,
-  "price_source": "ödeme ekranı ✓",
-  "transit_min": 37,
-  "transit_source": "kullanıcı, elle (2026-10-27)",
-  "rooms_status": "onaylı",
-  "score": 70,
-  "score_parts": {
-   "oda": 40,
-   "puan": 8,
-   "yorum": 6,
-   "ulaşım": 9,
-   "fiyat": 7
+   "ulaşım": -17,
+   "fiyat": 15
   },
   "over_budget": false,
-  "rank": 6
+  "rank": 4
  },
  {
   "id": "L17",
@@ -491,160 +350,97 @@
   "transit_min": 15,
   "transit_source": "kullanıcı, elle (2026-10-27)",
   "rooms_status": "onaylı",
-  "score": 68,
+  "rating_adj": 4.64,
+  "score": 59,
   "score_parts": {
    "oda": 40,
    "puan": 8,
-   "yorum": 0,
+   "yorum": 5,
    "ulaşım": 20,
-   "fiyat": 0
+   "fiyat": -14
   },
   "over_budget": true,
-  "rank": 7
+  "rank": 5
  },
  {
-  "id": "L27",
+  "id": "L18",
   "platform": "Airbnb",
-  "url": "https://www.airbnb.com.tr/rooms/1617390993473237515",
-  "notes": "30 m²; her odada çift kişilik yatak. Bir yorumda gece izinsiz giriş iddiası var; ücretsiz iptal ilk 24 saatle sınırlı.",
-  "lat": 48.91639,
-  "lng": 2.37712,
+  "url": "https://www.airbnb.com.tr/rooms/1104536727716347677",
+  "notes": "Önceki tabloda A02; misafir yorumuna göre RER 3 dk; 12 Kasım ücretsiz iptal.",
+  "lat": 48.93208,
+  "lng": 2.4228,
   "location_precision": "approx",
-  "title": "Teraslı büyüleyici daire - 2 yatak odası/4 kişi - Paris yakınında",
-  "address": "Tüm kiralık konut, Aubervilliers, Fransa",
-  "price_total_try": 52341,
+  "title": "Yeni Lux 60m² Tüm apart+Klima Paris yakınında",
+  "address": "Tüm kiralık konut, Le Bourget, Fransa",
+  "price_total_try": 70047,
   "price_base_try": null,
   "price_tax_try": null,
   "price_note": "tüm ücretler dahil",
-  "rating": 4.53,
+  "rating": 4.88,
   "rating_scale": 5,
-  "review_count": 15,
+  "review_count": 90,
   "max_guests": 4,
   "bedrooms": 2,
   "beds": 2,
-  "bed_layout": "1. yatak odası 1 kraliçe yatak 2. yatak odası 1 kraliçe yatak",
+  "bed_layout": "1. yatak odası 1 çift kişilik yatak 2. yatak odası 1 çift kişilik yatak",
   "room_option": null,
-  "cancellation": "24 saat süreyle ücretsiz iptal.",
-  "checkin_time": "16:00-23:00",
+  "cancellation": "Ücretsiz iptal son gün: 12 Kasım",
+  "checkin_time": "14:00-22:00",
   "low_reviews": [
    {
-    "date": "2026-08-16",
-    "stars": 1,
-    "text": "We booked two nights for four people and left the listing the next morning, after only one night. A break-in occurred around 1 a.m. during our stay, which caused us to have a sleepless night and did not allow us to feel safe on the premises. The indoor temperature recorded was 30°C. The host brought us two fans about an hour after our arrival, which I appreciate, but it was not enough to make the nights comfortable. "
+    "date": "2025-08-11",
+    "stars": 3,
+    "text": "Gurpreet himself gets 5 stars! He was always available and communicative! The apartment... Well, the day before arrival, Gurpreet wrote to me that there was water damage and a wall looks like it. However, the damage was not from 'yesterday', he could have mentioned this, especially since the apartment smelled and was moldy accordingly. Likewise, the walls are like paper. Above the apartment, you could hear trampling "
+   },
+   {
+    "date": "2025-07-18",
+    "stars": 2,
+    "text": "Decided on this let due to the strength of the reviews. I was contacted 3 days before the holiday to say there was a leak and water damage had occurred and the flat is ok to stay in. Given how casual this was mentioned and also with little time left to find an alternative I agreed to stay. The damp was very bad and appeared to be a long standing problem not something that happened 3 days before. The smell of damp was"
    }
   ],
-  "dist_mines_km": 8.3,
+  "dist_mines_km": 11.4,
   "nearest_stations": [
    {
-    "name": "Mairie d'Aubervilliers",
+    "name": "Le Bourget",
     "lines": [
-     "METRO 12"
+     "RER B",
+     "TRAM 11"
     ],
-    "dist_m": 400
+    "dist_m": 260
    },
    {
-    "name": "Aimé Césaire",
+    "name": "La Courneuve - 8 Mai 1945",
     "lines": [
-     "METRO 12"
+     "TRAM 1",
+     "METRO 7"
     ],
-    "dist_m": 920
+    "dist_m": 1540
    },
    {
-    "name": "La Plaine Stade de France - Saint-Denis - Aubervilliers",
+    "name": "Dugny - La Courneuve",
     "lines": [
-     "RER B"
+     "TRAM 11"
     ],
-    "dist_m": 1090
+    "dist_m": 1570
    }
   ],
-  "gmaps_transit_url": "https://www.google.com/maps/dir/?api=1&travelmode=transit&origin=48.91639,2.37712&destination=48.845632,2.339672",
-  "price_listed_try": 48436,
+  "gmaps_transit_url": "https://www.google.com/maps/dir/?api=1&travelmode=transit&origin=48.93208,2.4228&destination=48.845632,2.339672",
+  "price_listed_try": 60723,
   "price_source": "ödeme ekranı ✓",
-  "transit_min": 37,
+  "transit_min": 29,
   "transit_source": "kullanıcı, elle (2026-10-27)",
   "rooms_status": "onaylı",
-  "score": 68,
+  "rating_adj": 4.85,
+  "score": 59,
   "score_parts": {
    "oda": 40,
-   "puan": 5,
-   "yorum": 3,
+   "puan": 13,
+   "yorum": 7,
    "ulaşım": 9,
-   "fiyat": 11
-  },
-  "over_budget": false,
-  "rank": 8
- },
- {
-  "id": "L14",
-  "platform": "Airbnb",
-  "url": "https://www.airbnb.com.tr/rooms/1597803666494694176",
-  "notes": "Önceki tabloda A06; RER B 5 dk yürüme; giriş en erken 20.00.",
-  "lat": 48.79927,
-  "lng": 2.32316,
-  "location_precision": "approx",
-  "title": "Aile için T3, ulaşım, mağazalar",
-  "address": "Tüm kiralık konut, Cachan, Fransa",
-  "price_total_try": 72595,
-  "price_base_try": null,
-  "price_tax_try": null,
-  "price_note": "tüm ücretler dahil",
-  "rating": 4.79,
-  "rating_scale": 5,
-  "review_count": 19,
-  "max_guests": 4,
-  "bedrooms": 2,
-  "beds": 2,
-  "bed_layout": null,
-  "room_option": null,
-  "cancellation": "Ücretsiz iptal son gün: 8 Kasım",
-  "checkin_time": null,
-  "low_reviews": [
-   {
-    "date": "2026-04-17",
-    "stars": 3,
-    "text": "The apartment is spacious, located on the 4th floor, with an elevator. The kitchen is minimally equipped, with only the most basic amenities. The handle on the bathroom door was broken, not all the lights worked, and one gas burner didn't work. Limited sound insulation, so street noise is clearly audible inside, especially at the front; it is quiet at the back. The center of Paris is easy to reach, by RER or metro, w"
-   }
-  ],
-  "dist_mines_km": 5.3,
-  "nearest_stations": [
-   {
-    "name": "Arcueil - Cachan",
-    "lines": [
-     "RER B"
-    ],
-    "dist_m": 370
-   },
-   {
-    "name": "Bagneux - Lucie Aubrac",
-    "lines": [
-     "METRO 4"
-    ],
-    "dist_m": 610
-   },
-   {
-    "name": "Bagneux",
-    "lines": [
-     "RER B"
-    ],
-    "dist_m": 660
-   }
-  ],
-  "gmaps_transit_url": "https://www.google.com/maps/dir/?api=1&travelmode=transit&origin=48.79927,2.32316&destination=48.845632,2.339672",
-  "price_listed_try": 62914,
-  "price_source": "ödeme ekranı ✓",
-  "transit_min": 22,
-  "transit_source": "kullanıcı, elle (2026-10-27)",
-  "rooms_status": "doğrulanmalı",
-  "score": 67,
-  "score_parts": {
-   "oda": 32,
-   "puan": 11,
-   "yorum": 8,
-   "ulaşım": 16,
-   "fiyat": 0
+   "fiyat": -10
   },
   "over_budget": true,
-  "rank": 9
+  "rank": 6
  },
  {
   "id": "L12",
@@ -713,83 +509,90 @@
   "transit_min": 30,
   "transit_source": "kullanıcı, elle (2026-10-27)",
   "rooms_status": "doğrulanmalı",
-  "score": 66,
+  "rating_adj": 4.88,
+  "score": 57,
   "score_parts": {
    "oda": 32,
-   "puan": 14,
-   "yorum": 5,
-   "ulaşım": 12,
-   "fiyat": 3
+   "puan": 13,
+   "yorum": 8,
+   "ulaşım": 8,
+   "fiyat": -4
   },
   "over_budget": true,
-  "rank": 10
+  "rank": 7
  },
  {
-  "id": "L16",
+  "id": "L27",
   "platform": "Airbnb",
-  "url": "https://www.airbnb.com.tr/rooms/21548407",
-  "notes": "Oda düzeni, yorumlar ve ulaşım doğrulanmalı.",
-  "lat": 48.88388,
-  "lng": 2.34065,
+  "url": "https://www.airbnb.com.tr/rooms/1617390993473237515",
+  "notes": "30 m²; her odada çift kişilik yatak. Bir yorumda gece izinsiz giriş iddiası var; ücretsiz iptal ilk 24 saatle sınırlı.",
+  "lat": 48.91639,
+  "lng": 2.37712,
   "location_precision": "approx",
-  "title": "Montmartre'ın göbeğinde ferah ve aydınlık daire",
-  "address": "Tüm kiralık konut, Paris, Fransa",
-  "price_total_try": 66801,
+  "title": "Teraslı büyüleyici daire - 2 yatak odası/4 kişi - Paris yakınında",
+  "address": "Tüm kiralık konut, Aubervilliers, Fransa",
+  "price_total_try": 52341,
   "price_base_try": null,
   "price_tax_try": null,
   "price_note": "tüm ücretler dahil",
-  "rating": 4.44,
+  "rating": 4.53,
   "rating_scale": 5,
-  "review_count": 9,
+  "review_count": 15,
   "max_guests": 4,
   "bedrooms": 2,
   "beds": 2,
   "bed_layout": "1. yatak odası 1 kraliçe yatak 2. yatak odası 1 kraliçe yatak",
   "room_option": null,
   "cancellation": "24 saat süreyle ücretsiz iptal.",
-  "checkin_time": "15:00-21:00",
-  "low_reviews": [],
-  "dist_mines_km": 4.3,
+  "checkin_time": "16:00-23:00",
+  "low_reviews": [
+   {
+    "date": "2026-08-16",
+    "stars": 1,
+    "text": "We booked two nights for four people and left the listing the next morning, after only one night. A break-in occurred around 1 a.m. during our stay, which caused us to have a sleepless night and did not allow us to feel safe on the premises. The indoor temperature recorded was 30°C. The host brought us two fans about an hour after our arrival, which I appreciate, but it was not enough to make the nights comfortable. "
+   }
+  ],
+  "dist_mines_km": 8.3,
   "nearest_stations": [
    {
-    "name": "Abbesses",
+    "name": "Mairie d'Aubervilliers",
     "lines": [
      "METRO 12"
     ],
-    "dist_m": 210
+    "dist_m": 400
    },
    {
-    "name": "Anvers",
+    "name": "Aimé Césaire",
     "lines": [
-     "METRO 2"
+     "METRO 12"
     ],
-    "dist_m": 310
+    "dist_m": 920
    },
    {
-    "name": "Pigalle",
+    "name": "La Plaine Stade de France - Saint-Denis - Aubervilliers",
     "lines": [
-     "METRO 12",
-     "METRO 2"
+     "RER B"
     ],
-    "dist_m": 310
+    "dist_m": 1090
    }
   ],
-  "gmaps_transit_url": "https://www.google.com/maps/dir/?api=1&travelmode=transit&origin=48.88388,2.34065&destination=48.845632,2.339672",
-  "price_listed_try": 57852,
+  "gmaps_transit_url": "https://www.google.com/maps/dir/?api=1&travelmode=transit&origin=48.91639,2.37712&destination=48.845632,2.339672",
+  "price_listed_try": 48436,
   "price_source": "ödeme ekranı ✓",
-  "transit_min": 36,
+  "transit_min": 37,
   "transit_source": "kullanıcı, elle (2026-10-27)",
   "rooms_status": "onaylı",
-  "score": 66,
+  "rating_adj": 4.61,
+  "score": 57,
   "score_parts": {
    "oda": 40,
-   "puan": 3,
-   "yorum": 10,
-   "ulaşım": 10,
-   "fiyat": 3
+   "puan": 7,
+   "yorum": -3,
+   "ulaşım": 2,
+   "fiyat": 11
   },
-  "over_budget": true,
-  "rank": 11
+  "over_budget": false,
+  "rank": 8
  },
  {
   "id": "L13",
@@ -853,16 +656,153 @@
   "transit_min": 28,
   "transit_source": "kullanıcı, elle (2026-10-27)",
   "rooms_status": "doğrulanmalı",
-  "score": 65,
+  "rating_adj": 4.64,
+  "score": 56,
   "score_parts": {
    "oda": 32,
-   "puan": 6,
-   "yorum": 8,
-   "ulaşım": 14,
+   "puan": 8,
+   "yorum": 1,
+   "ulaşım": 10,
    "fiyat": 5
   },
   "over_budget": false,
-  "rank": 12
+  "rank": 9
+ },
+ {
+  "id": "L16",
+  "platform": "Airbnb",
+  "url": "https://www.airbnb.com.tr/rooms/21548407",
+  "notes": "Oda düzeni, yorumlar ve ulaşım doğrulanmalı.",
+  "lat": 48.88388,
+  "lng": 2.34065,
+  "location_precision": "approx",
+  "title": "Montmartre'ın göbeğinde ferah ve aydınlık daire",
+  "address": "Tüm kiralık konut, Paris, Fransa",
+  "price_total_try": 66801,
+  "price_base_try": null,
+  "price_tax_try": null,
+  "price_note": "tüm ücretler dahil",
+  "rating": 4.44,
+  "rating_scale": 5,
+  "review_count": 9,
+  "max_guests": 4,
+  "bedrooms": 2,
+  "beds": 2,
+  "bed_layout": "1. yatak odası 1 kraliçe yatak 2. yatak odası 1 kraliçe yatak",
+  "room_option": null,
+  "cancellation": "24 saat süreyle ücretsiz iptal.",
+  "checkin_time": "15:00-21:00",
+  "low_reviews": [],
+  "dist_mines_km": 4.3,
+  "nearest_stations": [
+   {
+    "name": "Abbesses",
+    "lines": [
+     "METRO 12"
+    ],
+    "dist_m": 210
+   },
+   {
+    "name": "Anvers",
+    "lines": [
+     "METRO 2"
+    ],
+    "dist_m": 310
+   },
+   {
+    "name": "Pigalle",
+    "lines": [
+     "METRO 12",
+     "METRO 2"
+    ],
+    "dist_m": 310
+   }
+  ],
+  "gmaps_transit_url": "https://www.google.com/maps/dir/?api=1&travelmode=transit&origin=48.88388,2.34065&destination=48.845632,2.339672",
+  "price_listed_try": 57852,
+  "price_source": "ödeme ekranı ✓",
+  "transit_min": 36,
+  "transit_source": "kullanıcı, elle (2026-10-27)",
+  "rooms_status": "onaylı",
+  "rating_adj": 4.6,
+  "score": 56,
+  "score_parts": {
+   "oda": 40,
+   "puan": 7,
+   "yorum": 10,
+   "ulaşım": 3,
+   "fiyat": -4
+  },
+  "over_budget": true,
+  "rank": 10
+ },
+ {
+  "id": "L28",
+  "platform": "Airbnb",
+  "url": "https://www.airbnb.com.tr/rooms/1637768683869166348",
+  "notes": "Kullanıcı sonradan ekledi (28.10.2026).",
+  "lat": 48.93204,
+  "lng": 2.42743,
+  "location_precision": "approx",
+  "title": "L'Écrin Parisien • T3 Design • Le Bourget • CDG Havalimanı",
+  "address": "Tüm kiralık konut, Le Bourget, Fransa",
+  "price_total_try": 72174,
+  "price_base_try": null,
+  "price_tax_try": null,
+  "price_note": "tüm ücretler dahil",
+  "rating": 4.94,
+  "rating_scale": 5,
+  "review_count": 35,
+  "max_guests": 5,
+  "bedrooms": 2,
+  "beds": 2,
+  "bed_layout": "1. yatak odası 1 çift kişilik yatak 2. yatak odası 1 çift kişilik yatak Oturma odası 1 kanepe",
+  "room_option": null,
+  "cancellation": "Ücretsiz iptal son gün: 12 Kasım",
+  "checkin_time": null,
+  "low_reviews": [],
+  "dist_mines_km": 11.6,
+  "nearest_stations": [
+   {
+    "name": "Le Bourget",
+    "lines": [
+     "RER B",
+     "TRAM 11"
+    ],
+    "dist_m": 190
+   },
+   {
+    "name": "Clovis / Drancy - Avenir",
+    "lines": [
+     "TRAM 1"
+    ],
+    "dist_m": 1740
+   },
+   {
+    "name": "Maurice Lachâtre",
+    "lines": [
+     "TRAM 1"
+    ],
+    "dist_m": 1740
+   }
+  ],
+  "gmaps_transit_url": "https://www.google.com/maps/dir/?api=1&travelmode=transit&origin=48.93204,2.42743&destination=48.845632,2.339672",
+  "price_listed_try": 62442,
+  "price_source": "ödeme ekranı ✓",
+  "transit_min": null,
+  "transit_source": null,
+  "rooms_status": "onaylı",
+  "rating_adj": 4.87,
+  "score": 55,
+  "score_parts": {
+   "oda": 40,
+   "puan": 13,
+   "yorum": 10,
+   "ulaşım": 6,
+   "fiyat": -14
+  },
+  "over_budget": true,
+  "rank": 11
  },
  {
   "id": "L15",
@@ -970,16 +910,157 @@
   "transit_min": 26,
   "transit_source": "kullanıcı, elle (2026-10-27)",
   "rooms_status": "onaylı",
-  "score": 57,
+  "rating_adj": 4.47,
+  "score": 54,
   "score_parts": {
    "oda": 40,
-   "puan": 3,
+   "puan": 4,
    "yorum": -5,
-   "ulaşım": 14,
-   "fiyat": 5
+   "ulaşım": 11,
+   "fiyat": 4
   },
   "over_budget": false,
+  "rank": 12
+ },
+ {
+  "id": "L24",
+  "platform": "Airbnb",
+  "url": "https://www.airbnb.com.tr/rooms/804454378659557391",
+  "notes": "Bütçeye çok yakın; ödeme aşamasında toplamı teyit et.",
+  "lat": 48.812,
+  "lng": 2.36,
+  "location_precision": "approx",
+  "title": "Paris 13'te 3 yatak odalı daire 800 m - WIFI",
+  "address": "Tüm otel olanakları sunan möbleli daire, Le Kremlin-Bicêtre, Fransa",
+  "price_total_try": 74542,
+  "price_base_try": null,
+  "price_tax_try": null,
+  "price_note": "tüm ücretler dahil",
+  "rating": 4.7,
+  "rating_scale": 5,
+  "review_count": 50,
+  "max_guests": 5,
+  "bedrooms": 3,
+  "beds": 3,
+  "bed_layout": "1. yatak odası 2 tek kişilik yatak 2. yatak odası 2 tek kişilik yatak 3. yatak odası 1 çift kişilik yatak Oturma odası 1 kanepe",
+  "room_option": null,
+  "cancellation": "24 saat süreyle ücretsiz iptal.",
+  "checkin_time": null,
+  "low_reviews": [],
+  "dist_mines_km": 4.0,
+  "nearest_stations": [
+   {
+    "name": "Le Kremlin - Bicêtre",
+    "lines": [
+     "METRO 7"
+    ],
+    "dist_m": 270
+   },
+   {
+    "name": "Châteaudun - Barbès",
+    "lines": [
+     "TRAM 9"
+    ],
+    "dist_m": 730
+   },
+   {
+    "name": "Cimetière Parisien d'Ivry",
+    "lines": [
+     "TRAM 9"
+    ],
+    "dist_m": 780
+   }
+  ],
+  "gmaps_transit_url": "https://www.google.com/maps/dir/?api=1&travelmode=transit&origin=48.812,2.36&destination=48.845632,2.339672",
+  "price_listed_try": 64861,
+  "price_source": "ödeme ekranı ✓",
+  "transit_min": 31,
+  "transit_source": "kullanıcı, elle (2026-10-27)",
+  "rooms_status": "onaylı",
+  "rating_adj": 4.7,
+  "score": 51,
+  "score_parts": {
+   "oda": 40,
+   "puan": 9,
+   "yorum": 10,
+   "ulaşım": 7,
+   "fiyat": -15
+  },
+  "over_budget": true,
   "rank": 13
+ },
+ {
+  "id": "L14",
+  "platform": "Airbnb",
+  "url": "https://www.airbnb.com.tr/rooms/1597803666494694176",
+  "notes": "Önceki tabloda A06; RER B 5 dk yürüme; giriş en erken 20.00.",
+  "lat": 48.79927,
+  "lng": 2.32316,
+  "location_precision": "approx",
+  "title": "Aile için T3, ulaşım, mağazalar",
+  "address": "Tüm kiralık konut, Cachan, Fransa",
+  "price_total_try": 72595,
+  "price_base_try": null,
+  "price_tax_try": null,
+  "price_note": "tüm ücretler dahil",
+  "rating": 4.79,
+  "rating_scale": 5,
+  "review_count": 19,
+  "max_guests": 4,
+  "bedrooms": 2,
+  "beds": 2,
+  "bed_layout": null,
+  "room_option": null,
+  "cancellation": "Ücretsiz iptal son gün: 8 Kasım",
+  "checkin_time": null,
+  "low_reviews": [
+   {
+    "date": "2026-04-17",
+    "stars": 3,
+    "text": "The apartment is spacious, located on the 4th floor, with an elevator. The kitchen is minimally equipped, with only the most basic amenities. The handle on the bathroom door was broken, not all the lights worked, and one gas burner didn't work. Limited sound insulation, so street noise is clearly audible inside, especially at the front; it is quiet at the back. The center of Paris is easy to reach, by RER or metro, w"
+   }
+  ],
+  "dist_mines_km": 5.3,
+  "nearest_stations": [
+   {
+    "name": "Arcueil - Cachan",
+    "lines": [
+     "RER B"
+    ],
+    "dist_m": 370
+   },
+   {
+    "name": "Bagneux - Lucie Aubrac",
+    "lines": [
+     "METRO 4"
+    ],
+    "dist_m": 610
+   },
+   {
+    "name": "Bagneux",
+    "lines": [
+     "RER B"
+    ],
+    "dist_m": 660
+   }
+  ],
+  "gmaps_transit_url": "https://www.google.com/maps/dir/?api=1&travelmode=transit&origin=48.79927,2.32316&destination=48.845632,2.339672",
+  "price_listed_try": 62914,
+  "price_source": "ödeme ekranı ✓",
+  "transit_min": 22,
+  "transit_source": "kullanıcı, elle (2026-10-27)",
+  "rooms_status": "doğrulanmalı",
+  "rating_adj": 4.75,
+  "score": 44,
+  "score_parts": {
+   "oda": 32,
+   "puan": 10,
+   "yorum": 3,
+   "ulaşım": 14,
+   "fiyat": -15
+  },
+  "over_budget": true,
+  "rank": 14
  },
  {
   "id": "L22",
@@ -1037,16 +1118,17 @@
   "transit_min": 48,
   "transit_source": "kullanıcı, elle (2026-10-27)",
   "rooms_status": "şüpheli",
-  "score": 52,
+  "rating_adj": 4.88,
+  "score": 41,
   "score_parts": {
    "oda": 18,
-   "puan": 15,
+   "puan": 13,
    "yorum": 10,
-   "ulaşım": 4,
-   "fiyat": 5
+   "ulaşım": -4,
+   "fiyat": 4
   },
   "over_budget": false,
-  "rank": 14
+  "rank": 15
  },
  {
   "id": "L26",
@@ -1114,148 +1196,17 @@
   "transit_min": 40,
   "transit_source": "kullanıcı, elle (2026-10-27)",
   "rooms_status": "şüpheli",
-  "score": 51,
+  "rating_adj": 4.77,
+  "score": 40,
   "score_parts": {
    "oda": 18,
-   "puan": 12,
-   "yorum": 5,
-   "ulaşım": 8,
-   "fiyat": 8
-  },
-  "over_budget": false,
-  "rank": 15
- },
- {
-  "id": "L05",
-  "platform": "Booking",
-  "url": "https://www.booking.com/hotel/fr/t2-coteau-cachan.tr.html",
-  "notes": "İki yatak aynı odada; 2 yatak odası yok.",
-  "lat": 48.797717,
-  "lng": 2.3407428,
-  "location_precision": "exact",
-  "title": "T2 Coteau CACHAN",
-  "address": "Appartement A 6 Boulevard de la Vanne, 94230 Cachan, Fransa",
-  "price_total_try": 46000,
-  "price_base_try": 37446,
-  "price_tax_try": 9144,
-  "price_note": "vergi ve masraflar dahil",
-  "rating": 9.0,
-  "rating_scale": 10,
-  "review_count": 2,
-  "max_guests": 3,
-  "bedrooms": 1,
-  "beds": null,
-  "bed_layout": "Yatak Odası 1: 1 çift kişilik yatak ve 1 büyük çift kişilik yatak",
-  "room_option": "Tek Yatak Odalı Daire",
-  "cancellation": "30 Ekim 2026 öncesinde ücretsiz iptal",
-  "checkin_time": null,
-  "low_reviews": null,
-  "dist_mines_km": 5.3,
-  "nearest_stations": [
-   {
-    "name": "Villejuif - Gustave Roussy",
-    "lines": [
-     "METRO 14"
-    ],
-    "dist_m": 820
-   },
-   {
-    "name": "Arcueil - Cachan",
-    "lines": [
-     "RER B"
-    ],
-    "dist_m": 930
-   },
-   {
-    "name": "Laplace",
-    "lines": [
-     "RER B"
-    ],
-    "dist_m": 1270
-   }
-  ],
-  "gmaps_transit_url": "https://www.google.com/maps/dir/?api=1&travelmode=transit&origin=48.797717,2.3407428&destination=48.845632,2.339672",
-  "price_listed_try": 46590,
-  "price_source": "ödeme ekranı ✓",
-  "transit_min": 32,
-  "transit_source": "kullanıcı, elle (2026-10-27)",
-  "rooms_status": "yok",
-  "score": 46,
-  "score_parts": {
-   "oda": 0,
-   "puan": 14,
-   "yorum": 6,
-   "ulaşım": 12,
-   "fiyat": 14
+   "puan": 11,
+   "yorum": 4,
+   "ulaşım": 0,
+   "fiyat": 7
   },
   "over_budget": false,
   "rank": 16
- },
- {
-  "id": "L23",
-  "platform": "Airbnb",
-  "url": "https://www.airbnb.com.tr/rooms/789302865571147059",
-  "notes": "1 yatak odası; 2 ayrı oda koşulunu sağlamıyor.",
-  "lat": 48.8584,
-  "lng": 2.2121,
-  "location_precision": "approx",
-  "title": "2 odalı aydınlık | Val d'Or | La Défense yakınında",
-  "address": "Tüm kiralık konut, Saint-Cloud, Fransa",
-  "price_total_try": 48684,
-  "price_base_try": null,
-  "price_tax_try": null,
-  "price_note": "tüm ücretler dahil",
-  "rating": 4.91,
-  "rating_scale": 5,
-  "review_count": 86,
-  "max_guests": 4,
-  "bedrooms": 1,
-  "beds": 1,
-  "bed_layout": "Yatak odası 1 kraliçe yatak Oturma odası 1 kanepe",
-  "room_option": null,
-  "cancellation": "24 saat süreyle ücretsiz iptal.",
-  "checkin_time": "16:00-22:00",
-  "low_reviews": [],
-  "dist_mines_km": 9.4,
-  "nearest_stations": [
-   {
-    "name": "Le Val d'Or",
-    "lines": [
-     "TRAIN L"
-    ],
-    "dist_m": 420
-   },
-   {
-    "name": "Les Coteaux",
-    "lines": [
-     "TRAM 2"
-    ],
-    "dist_m": 630
-   },
-   {
-    "name": "Les Milons",
-    "lines": [
-     "TRAM 2"
-    ],
-    "dist_m": 1160
-   }
-  ],
-  "gmaps_transit_url": "https://www.google.com/maps/dir/?api=1&travelmode=transit&origin=48.8584,2.2121&destination=48.845632,2.339672",
-  "price_listed_try": 48685,
-  "price_source": "ödeme ekranı ✓",
-  "transit_min": 45,
-  "transit_source": "kullanıcı, elle (2026-10-27)",
-  "rooms_status": "yok",
-  "score": 42,
-  "score_parts": {
-   "oda": 0,
-   "puan": 14,
-   "yorum": 10,
-   "ulaşım": 5,
-   "fiyat": 13
-  },
-  "over_budget": false,
-  "rank": 17
  },
  {
   "id": "L03",
@@ -1313,16 +1264,17 @@
   "transit_min": 19,
   "transit_source": "kullanıcı, elle (2026-10-27)",
   "rooms_status": "yok",
-  "score": 39,
+  "rating_adj": 7.77,
+  "score": 37,
   "score_parts": {
    "oda": 0,
    "puan": 7,
    "yorum": 6,
-   "ulaşım": 18,
-   "fiyat": 8
+   "ulaşım": 17,
+   "fiyat": 7
   },
   "over_budget": false,
-  "rank": 18
+  "rank": 17
  },
  {
   "id": "L04",
@@ -1379,16 +1331,220 @@
   "transit_min": 20,
   "transit_source": "kullanıcı, elle (2026-10-27)",
   "rooms_status": "yok",
-  "score": 38,
+  "rating_adj": 7.78,
+  "score": 37,
   "score_parts": {
    "oda": 0,
-   "puan": 5,
+   "puan": 7,
    "yorum": 6,
-   "ulaşım": 18,
-   "fiyat": 9
+   "ulaşım": 16,
+   "fiyat": 8
+  },
+  "over_budget": false,
+  "rank": 18
+ },
+ {
+  "id": "L05",
+  "platform": "Booking",
+  "url": "https://www.booking.com/hotel/fr/t2-coteau-cachan.tr.html",
+  "notes": "İki yatak aynı odada; 2 yatak odası yok.",
+  "lat": 48.797717,
+  "lng": 2.3407428,
+  "location_precision": "exact",
+  "title": "T2 Coteau CACHAN",
+  "address": "Appartement A 6 Boulevard de la Vanne, 94230 Cachan, Fransa",
+  "price_total_try": 46000,
+  "price_base_try": 37446,
+  "price_tax_try": 9144,
+  "price_note": "vergi ve masraflar dahil",
+  "rating": 9.0,
+  "rating_scale": 10,
+  "review_count": 2,
+  "max_guests": 3,
+  "bedrooms": 1,
+  "beds": null,
+  "bed_layout": "Yatak Odası 1: 1 çift kişilik yatak ve 1 büyük çift kişilik yatak",
+  "room_option": "Tek Yatak Odalı Daire",
+  "cancellation": "30 Ekim 2026 öncesinde ücretsiz iptal",
+  "checkin_time": null,
+  "low_reviews": null,
+  "dist_mines_km": 5.3,
+  "nearest_stations": [
+   {
+    "name": "Villejuif - Gustave Roussy",
+    "lines": [
+     "METRO 14"
+    ],
+    "dist_m": 820
+   },
+   {
+    "name": "Arcueil - Cachan",
+    "lines": [
+     "RER B"
+    ],
+    "dist_m": 930
+   },
+   {
+    "name": "Laplace",
+    "lines": [
+     "RER B"
+    ],
+    "dist_m": 1270
+   }
+  ],
+  "gmaps_transit_url": "https://www.google.com/maps/dir/?api=1&travelmode=transit&origin=48.797717,2.3407428&destination=48.845632,2.339672",
+  "price_listed_try": 46590,
+  "price_source": "ödeme ekranı ✓",
+  "transit_min": 32,
+  "transit_source": "kullanıcı, elle (2026-10-27)",
+  "rooms_status": "yok",
+  "rating_adj": 8.12,
+  "score": 35,
+  "score_parts": {
+   "oda": 0,
+   "puan": 9,
+   "yorum": 6,
+   "ulaşım": 6,
+   "fiyat": 14
   },
   "over_budget": false,
   "rank": 19
+ },
+ {
+  "id": "L23",
+  "platform": "Airbnb",
+  "url": "https://www.airbnb.com.tr/rooms/789302865571147059",
+  "notes": "1 yatak odası; 2 ayrı oda koşulunu sağlamıyor.",
+  "lat": 48.8584,
+  "lng": 2.2121,
+  "location_precision": "approx",
+  "title": "2 odalı aydınlık | Val d'Or | La Défense yakınında",
+  "address": "Tüm kiralık konut, Saint-Cloud, Fransa",
+  "price_total_try": 48684,
+  "price_base_try": null,
+  "price_tax_try": null,
+  "price_note": "tüm ücretler dahil",
+  "rating": 4.91,
+  "rating_scale": 5,
+  "review_count": 86,
+  "max_guests": 4,
+  "bedrooms": 1,
+  "beds": 1,
+  "bed_layout": "Yatak odası 1 kraliçe yatak Oturma odası 1 kanepe",
+  "room_option": null,
+  "cancellation": "24 saat süreyle ücretsiz iptal.",
+  "checkin_time": "16:00-22:00",
+  "low_reviews": [],
+  "dist_mines_km": 9.4,
+  "nearest_stations": [
+   {
+    "name": "Le Val d'Or",
+    "lines": [
+     "TRAIN L"
+    ],
+    "dist_m": 420
+   },
+   {
+    "name": "Les Coteaux",
+    "lines": [
+     "TRAM 2"
+    ],
+    "dist_m": 630
+   },
+   {
+    "name": "Les Milons",
+    "lines": [
+     "TRAM 2"
+    ],
+    "dist_m": 1160
+   }
+  ],
+  "gmaps_transit_url": "https://www.google.com/maps/dir/?api=1&travelmode=transit&origin=48.8584,2.2121&destination=48.845632,2.339672",
+  "price_listed_try": 48685,
+  "price_source": "ödeme ekranı ✓",
+  "transit_min": 45,
+  "transit_source": "kullanıcı, elle (2026-10-27)",
+  "rooms_status": "yok",
+  "rating_adj": 4.88,
+  "score": 34,
+  "score_parts": {
+   "oda": 0,
+   "puan": 13,
+   "yorum": 10,
+   "ulaşım": -2,
+   "fiyat": 13
+  },
+  "over_budget": false,
+  "rank": 20
+ },
+ {
+  "id": "L02",
+  "platform": "Booking",
+  "url": "https://www.booking.com/hotel/fr/parc-montsouris-paris.tr.html",
+  "notes": "500 € kart depozitosu; ilk fiyat iptal şartı kontrol edilmeli; 2 yatak odası yok.",
+  "lat": 48.8227587,
+  "lng": 2.3351279,
+  "location_precision": "exact",
+  "title": "Parc Montsouris Paris",
+  "address": "18 Rue Nansouty, 14. Montparnasse, 75014 Paris, Fransa",
+  "price_total_try": 62300,
+  "price_base_try": 55118,
+  "price_tax_try": 12239,
+  "price_note": "vergi ve masraflar dahil",
+  "rating": 6.4,
+  "rating_scale": 10,
+  "review_count": 26,
+  "max_guests": 3,
+  "bedrooms": 1,
+  "beds": null,
+  "bed_layout": "Yatak Odası 1: 1 büyük çift kişilik yatak",
+  "room_option": "Tek Yatak Odalı Daire",
+  "cancellation": "30 Ekim 2026 öncesinde ücretsiz iptal",
+  "checkin_time": null,
+  "low_reviews": null,
+  "dist_mines_km": 2.6,
+  "nearest_stations": [
+   {
+    "name": "Montsouris",
+    "lines": [
+     "TRAM 3a"
+    ],
+    "dist_m": 190
+   },
+   {
+    "name": "Cité universitaire",
+    "lines": [
+     "TRAM 3a",
+     "RER B"
+    ],
+    "dist_m": 370
+   },
+   {
+    "name": "Porte d'Orléans",
+    "lines": [
+     "METRO 4",
+     "TRAM 3a"
+    ],
+    "dist_m": 700
+   }
+  ],
+  "gmaps_transit_url": "https://www.google.com/maps/dir/?api=1&travelmode=transit&origin=48.8227587,2.3351279&destination=48.845632,2.339672",
+  "price_listed_try": 67357,
+  "price_source": "ödeme ekranı ✓",
+  "transit_min": 18,
+  "transit_source": "kullanıcı, elle (2026-10-27)",
+  "rooms_status": "yok",
+  "rating_adj": 6.99,
+  "score": 32,
+  "score_parts": {
+   "oda": 0,
+   "puan": 3,
+   "yorum": 6,
+   "ulaşım": 18,
+   "fiyat": 5
+  },
+  "over_budget": false,
+  "rank": 21
  },
  {
   "id": "L10",
@@ -1445,16 +1601,17 @@
   "transit_min": 39,
   "transit_source": "kullanıcı, elle (2026-10-27)",
   "rooms_status": "yok",
-  "score": 38,
+  "rating_adj": 8.12,
+  "score": 31,
   "score_parts": {
    "oda": 0,
    "puan": 9,
    "yorum": 6,
-   "ulaşım": 8,
+   "ulaşım": 1,
    "fiyat": 15
   },
   "over_budget": false,
-  "rank": 20
+  "rank": 22
  },
  {
   "id": "L07",
@@ -1512,16 +1669,17 @@
   "transit_min": 38,
   "transit_source": "kullanıcı, elle (2026-10-27)",
   "rooms_status": "yok",
-  "score": 36,
+  "rating_adj": 7.94,
+  "score": 30,
   "score_parts": {
    "oda": 0,
    "puan": 8,
    "yorum": 6,
-   "ulaşım": 8,
+   "ulaşım": 2,
    "fiyat": 14
   },
   "over_budget": false,
-  "rank": 21
+  "rank": 23
  },
  {
   "id": "L11",
@@ -1581,84 +1739,17 @@
   "transit_min": 34,
   "transit_source": "kullanıcı, elle (2026-10-27)",
   "rooms_status": "yok",
-  "score": 34,
+  "rating_adj": 7.34,
+  "score": 30,
   "score_parts": {
    "oda": 0,
-   "puan": 4,
+   "puan": 5,
    "yorum": 6,
-   "ulaşım": 10,
+   "ulaşım": 5,
    "fiyat": 14
   },
   "over_budget": false,
-  "rank": 22
- },
- {
-  "id": "L02",
-  "platform": "Booking",
-  "url": "https://www.booking.com/hotel/fr/parc-montsouris-paris.tr.html",
-  "notes": "500 € kart depozitosu; ilk fiyat iptal şartı kontrol edilmeli; 2 yatak odası yok.",
-  "lat": 48.8227587,
-  "lng": 2.3351279,
-  "location_precision": "exact",
-  "title": "Parc Montsouris Paris",
-  "address": "18 Rue Nansouty, 14. Montparnasse, 75014 Paris, Fransa",
-  "price_total_try": 62300,
-  "price_base_try": 55118,
-  "price_tax_try": 12239,
-  "price_note": "vergi ve masraflar dahil",
-  "rating": 6.4,
-  "rating_scale": 10,
-  "review_count": 26,
-  "max_guests": 3,
-  "bedrooms": 1,
-  "beds": null,
-  "bed_layout": "Yatak Odası 1: 1 büyük çift kişilik yatak",
-  "room_option": "Tek Yatak Odalı Daire",
-  "cancellation": "30 Ekim 2026 öncesinde ücretsiz iptal",
-  "checkin_time": null,
-  "low_reviews": null,
-  "dist_mines_km": 2.6,
-  "nearest_stations": [
-   {
-    "name": "Montsouris",
-    "lines": [
-     "TRAM 3a"
-    ],
-    "dist_m": 190
-   },
-   {
-    "name": "Cité universitaire",
-    "lines": [
-     "TRAM 3a",
-     "RER B"
-    ],
-    "dist_m": 370
-   },
-   {
-    "name": "Porte d'Orléans",
-    "lines": [
-     "METRO 4",
-     "TRAM 3a"
-    ],
-    "dist_m": 700
-   }
-  ],
-  "gmaps_transit_url": "https://www.google.com/maps/dir/?api=1&travelmode=transit&origin=48.8227587,2.3351279&destination=48.845632,2.339672",
-  "price_listed_try": 67357,
-  "price_source": "ödeme ekranı ✓",
-  "transit_min": 18,
-  "transit_source": "kullanıcı, elle (2026-10-27)",
-  "rooms_status": "yok",
-  "score": 29,
-  "score_parts": {
-   "oda": 0,
-   "puan": 0,
-   "yorum": 6,
-   "ulaşım": 18,
-   "fiyat": 5
-  },
-  "over_budget": false,
-  "rank": 23
+  "rank": 24
  },
  {
   "id": "L01",
@@ -1716,16 +1807,17 @@
   "transit_min": 39,
   "transit_source": "kullanıcı, elle (2026-10-27)",
   "rooms_status": "yok",
-  "score": 28,
+  "rating_adj": 7.13,
+  "score": 25,
   "score_parts": {
    "oda": 0,
-   "puan": 0,
+   "puan": 4,
    "yorum": 6,
-   "ulaşım": 8,
+   "ulaşım": 1,
    "fiyat": 14
   },
   "over_budget": false,
-  "rank": 24
+  "rank": 25
  },
  {
   "id": "L08",
@@ -1785,15 +1877,16 @@
   "transit_min": 40,
   "transit_source": "kullanıcı, elle (2026-10-27)",
   "rooms_status": "yok",
-  "score": 27,
+  "rating_adj": 7.41,
+  "score": 19,
   "score_parts": {
    "oda": 0,
    "puan": 5,
    "yorum": 6,
-   "ulaşım": 8,
+   "ulaşım": 0,
    "fiyat": 8
   },
   "over_budget": false,
-  "rank": 25
+  "rank": 26
  }
 ]
