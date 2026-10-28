@@ -1,0 +1,102 @@
+{
+  "updated": "2026-10-28",
+  "tips": [
+    "Ulaşım: 13–15 Kasım için tekli bilet (2,55 €) ya da günlük Navigo Jour (12,30 €, havalimanı hariç). 16–22 Kasım için Navigo Semaine (32,40 €, pazartesi–pazar, tüm bölgeler); bunun için fotoğraflı Navigo Découverte kartı gerekiyor (~5 €, istasyon gişesinden).",
+    "Havalimanı: CDG'den RER B ile aktarmasız Antony / Parc de Sceaux'ya. Orly'den Orlyval ile Antony'ye, orada RER B'ye. Havalimanı bileti 14 €. Navigo Semaine'in havalimanını kapsayıp kapsamadığını gişede sor.",
+    "Hafta içi akşamlar: gün batımı ~17:10, saat 18:00'den sonra hava karanlık. Akşam rotaları ışıklandırılmış yerlerden seçildi.",
+    "Louvre salı kapalı; çarşamba ve cuma 21:00'e kadar açık. Grev nedeniyle habersiz kapandığı günler olabiliyor, o sabah resmi hesaplarına bak.",
+    "Centre Pompidou 2030'a kadar tadilatta, kapalı.",
+    "Eyfel Kulesi hava karardıktan sonra her saat başı 5 dakika ışıl ışıl yanıp sönüyor.",
+    "Ucuz yemek: fırınlarda sandviç + içecek + tatlı 'formule' ~8–10 €; 'bouillon' restoranlarında klasik Fransız yemekleri ~15 €; piknik için Monoprix / Franprix.",
+    "Kasım: 5–11 °C ve sık yağmur. Şemsiye ve rahat ayakkabı şart.",
+    "Bilet fiyatları ve açılış saatleri değişebiliyor; gitmeden resmi sitelerden teyit edin."
+  ],
+  "days": [
+    {
+      "date": "2026-11-13", "short": "Cuma 13", "title": "Varış ve Latin Mahallesi akşamı", "when": "Akşam",
+      "stops": [
+        {"time": "Akşam", "name": "Eve yerleşme", "note": "L13 için giriş 17:00–23:00, kilitli kutu ile. Yorumlarda giriş sorunu geçiyor; ev sahibiyle varış saatini önceden konuşun.", "lat": null, "lng": null},
+        {"time": "20:00", "name": "Place Saint-Michel", "note": "RER B ile Saint-Michel–Notre-Dame'da inin. Çeşme ve Seine kıyısı.", "lat": 48.8534, "lng": 2.3440},
+        {"time": "20:20", "name": "Shakespeare and Company", "note": "Ünlü kitapçı; vitrin ve çevresi akşam güzel.", "lat": 48.8526, "lng": 2.3471},
+        {"time": "20:40", "name": "Notre-Dame (dıştan, ışıklı)", "note": "Karşı kıyıdan ışıklı cephe. İçeriyi Cumartesi 21'de gezin.", "lat": 48.8530, "lng": 2.3499}
+      ]
+    },
+    {
+      "date": "2026-11-14", "short": "Cmt 14", "title": "Klasik Paris: Eyfel'den Arc de Triomphe'a", "when": "Tam gün",
+      "stops": [
+        {"time": "09:30", "name": "Trocadéro", "note": "Eyfel'in en iyi manzarası; sabah kalabalık az.", "lat": 48.8616, "lng": 2.2893},
+        {"time": "10:30", "name": "Eyfel Kulesi", "note": "Merdivenle 2. kata çıkmak asansörden ucuz. Bileti online önceden alın; genç/öğrenci indirimini kontrol edin.", "cost": "~15–30 €", "lat": 48.8584, "lng": 2.2945},
+        {"time": "12:30", "name": "Rue Cler", "note": "Pazar sokağı: fırın, peynirci, meyve. Champ de Mars'ta piknik öğle yemeği.", "cost": "~10 €", "lat": 48.8566, "lng": 2.3066},
+        {"time": "14:00", "name": "Les Invalides ve Pont Alexandre III", "note": "Altın kubbe ve Paris'in en süslü köprüsü. Dışarıdan bakmak ücretsiz.", "lat": 48.8639, "lng": 2.3135},
+        {"time": "15:00", "name": "Grand Palais ve Champs-Élysées", "note": "Bulvar boyunca Arc de Triomphe'a yürüyüş (~2 km).", "lat": 48.8698, "lng": 2.3076},
+        {"time": "16:30", "name": "Arc de Triomphe terası", "note": "Gün batımını (~17:10) buradan izleyin. AB'de oturmayan 18–25 yaş için indirim yok, bileti online alın.", "cost": "~16 €", "lat": 48.8738, "lng": 2.2950},
+        {"time": "18:00", "name": "Pont d'Iéna'dan Eyfel ışıkları", "note": "Saat başı ışık gösterisi. Akşam yemeği için Rue Cler ya da Grenelle tarafı.", "lat": 48.8600, "lng": 2.2920}
+      ]
+    },
+    {
+      "date": "2026-11-15", "short": "Pzr 15", "title": "Montmartre ve Le Marais", "when": "Tam gün",
+      "stops": [
+        {"time": "09:30", "name": "Sacré-Cœur", "note": "Bazilikaya giriş ücretsiz. Merdivenlerden Paris manzarası; sabah erken daha sakin.", "lat": 48.8867, "lng": 2.3431},
+        {"time": "10:30", "name": "Place du Tertre ve Rue de l'Abreuvoir", "note": "Ressamlar meydanı ve pembe ev La Maison Rose. Arka sokaklarda gezin.", "lat": 48.8870, "lng": 2.3405},
+        {"time": "11:45", "name": "Le Mur des je t'aime", "note": "Abbesses'teki 'Seni seviyorum' duvarı; metro girişi Art Nouveau.", "lat": 48.8848, "lng": 2.3387},
+        {"time": "12:30", "name": "Bouillon Pigalle", "note": "Ucuz klasik Fransız yemekleri. Kuyruk olabilir, erken gidin.", "cost": "~15 €", "lat": 48.8822, "lng": 2.3378},
+        {"time": "14:30", "name": "Place des Vosges", "note": "Paris'in en eski meydanı. Marais'de dükkânların çoğu pazar günü açık.", "lat": 48.8556, "lng": 2.3655},
+        {"time": "15:30", "name": "Rue des Rosiers", "note": "Falafel sokağı, ara öğün için. Marais'nin küçük sokaklarında dolaşın.", "cost": "~8 €", "lat": 48.8572, "lng": 2.3590},
+        {"time": "17:00", "name": "Île Saint-Louis", "note": "Hôtel de Ville'den köprüyle adaya. Akşam ışıklarında Seine yürüyüşü.", "lat": 48.8516, "lng": 2.3567}
+      ]
+    },
+    {
+      "date": "2026-11-16", "short": "Pzt 16", "title": "Latin Mahallesi akşamı", "when": "Akşam (Mines'ten çıkınca)",
+      "stops": [
+        {"time": "18:00", "name": "Panthéon", "note": "Mines'ten 5 dk yürüme; ışıklı kubbe. Yanında Saint-Étienne-du-Mont kilisesi.", "lat": 48.8462, "lng": 2.3464},
+        {"time": "18:45", "name": "Rue Mouffetard", "note": "Ucuz krepçiler, Yunan dönerciler ve barlar. Akşam yemeği burada.", "cost": "~10–12 €", "lat": 48.8425, "lng": 2.3497}
+      ]
+    },
+    {
+      "date": "2026-11-17", "short": "Sal 17", "title": "Seine tekne turu", "when": "Akşam",
+      "stops": [
+        {"time": "18:30", "name": "Place Dauphine ve Pont Neuf", "note": "Île de la Cité'nin sakin ucu.", "lat": 48.8568, "lng": 2.3424},
+        {"time": "19:00", "name": "Vedettes du Pont-Neuf", "note": "1 saatlik akşam tekne turu; ışıklı köprüler ve Eyfel. Bileti online alınca ucuzluyor.", "cost": "~15–20 €", "lat": 48.8571, "lng": 2.3405},
+        {"time": "20:15", "name": "Pont des Arts", "note": "Louvre ile Institut de France arasındaki yaya köprüsü. Louvre bugün kapalı.", "lat": 48.8583, "lng": 2.3375}
+      ]
+    },
+    {
+      "date": "2026-11-18", "short": "Çrş 18", "title": "Gece Louvre", "when": "Akşam",
+      "stops": [
+        {"time": "18:00", "name": "Louvre", "note": "Çarşamba 21:00'e kadar açık. Bileti saatli online alın; 2–3 saatte Mona Lisa, Venüs, Kanatlı Zafer ve Fransız resim salonları. Son giriş saatini kontrol edin.", "cost": "~22 €", "lat": 48.8606, "lng": 2.3376},
+        {"time": "21:00", "name": "Cour Carrée ve Palais-Royal", "note": "Çıkışta ışıklı avlu ve Palais-Royal'in çizgili sütunları (Buren).", "lat": 48.8637, "lng": 2.3371}
+      ]
+    },
+    {
+      "date": "2026-11-19", "short": "Prş 19", "title": "Montparnasse manzarası ve krep", "when": "Akşam",
+      "stops": [
+        {"time": "18:30", "name": "Tour Montparnasse 56. kat", "note": "Manzarasında Eyfel de görünüyor; Eyfel'den ucuz ve kuyruksuz.", "cost": "~20 €", "lat": 48.8421, "lng": 2.3219},
+        {"time": "19:45", "name": "Rue du Montparnasse krepçileri", "note": "Breton krepçileri: tuzlu galette + tatlı krep + elma şarabı.", "cost": "~15 €", "lat": 48.8414, "lng": 2.3266}
+      ]
+    },
+    {
+      "date": "2026-11-20", "short": "Cum 20", "title": "Opéra, Galeries Lafayette ve bouillon", "when": "Akşam",
+      "stops": [
+        {"time": "18:00", "name": "Opéra Garnier (dıştan)", "note": "Işıklı cephe ve meydanı.", "lat": 48.8720, "lng": 2.3316},
+        {"time": "18:20", "name": "Galeries Lafayette", "note": "Kubbe altı ve ücretsiz çatı terası (kapanış saatini kontrol edin). Kasım'da Noel vitrinleri ve dev ağaç genelde kurulmuş oluyor.", "lat": 48.8738, "lng": 2.3320},
+        {"time": "19:30", "name": "Bouillon Chartier (Grands Boulevards)", "note": "1896'dan kalma salon, ucuz klasik menü. Rezervasyon alınmıyor, kuyruğa girin.", "cost": "~15 €", "lat": 48.8721, "lng": 2.3437}
+      ]
+    },
+    {
+      "date": "2026-11-21", "short": "Cmt 21", "title": "Île de la Cité, Marais pazarı, Canal Saint-Martin", "when": "Tam gün",
+      "stops": [
+        {"time": "09:30", "name": "Sainte-Chapelle", "note": "Vitraylar sabah ışığında en güzel; saatli bileti online alın.", "cost": "~20 €", "lat": 48.8554, "lng": 2.3450},
+        {"time": "10:45", "name": "Notre-Dame (içeri)", "note": "Giriş ücretsiz; online ücretsiz rezervasyonla kuyruk kısalıyor.", "lat": 48.8530, "lng": 2.3499},
+        {"time": "12:30", "name": "Marché des Enfants Rouges", "note": "Paris'in en eski kapalı pazarı; farklı mutfaklardan öğle yemeği.", "cost": "~12 €", "lat": 48.8628, "lng": 2.3619},
+        {"time": "14:30", "name": "Canal Saint-Martin", "note": "Demir köprüler ve kanal boyu kafeler; Rue Beaurepaire'deki dükkânlar.", "lat": 48.8710, "lng": 2.3655},
+        {"time": "17:00", "name": "Saint-Germain-des-Prés", "note": "Kilise, Café de Flore ve Les Deux Magots önü (kahve pahalı, önünden geçmek yeter). Vedada Rue de Buci civarında yemek.", "lat": 48.8540, "lng": 2.3336}
+      ]
+    },
+    {
+      "date": "2026-11-22", "short": "Pzr 22", "title": "Dönüş", "when": "Sabah",
+      "stops": [
+        {"time": "09:00", "name": "Fırında kahvaltı ve çıkış", "note": "L13'te çıkış en geç 10:00. CDG'ye RER B ile aktarmasız, Orly'ye Orlyval ile. Havalimanı bileti 14 € (Navigo Semaine'in kapsayıp kapsamadığını sorun).", "lat": null, "lng": null}
+      ]
+    }
+  ]
+}

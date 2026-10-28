@@ -20,6 +20,7 @@ def main():
     data = (SITE / "data.js").read_text(encoding="utf-8")
     base = json.loads((GEO / "base.json").read_text(encoding="utf-8"))
     base["landmarks"] = json.loads((ROOT / "data" / "landmarks.json").read_text(encoding="utf-8"))
+    base["trip"] = json.loads((ROOT / "data" / "trip_plan.json").read_text(encoding="utf-8"))
     base = "window.PARIS_BASE=" + json.dumps(base, ensure_ascii=False, separators=(",", ":")) + ";"
     html = html.replace("/*LEAFLET_CSS*/", (GEO / "leaflet.css").read_text(encoding="utf-8"))
     html = html.replace("/*DATA*/", data + "\n" + base)

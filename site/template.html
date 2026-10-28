@@ -151,6 +151,34 @@ details.note p { margin: 6px 0 0; }
 .cmp-scroll a { color: var(--ink); font-weight: 700; display: inline-block; padding: 3px 0; }
 .cmp-scroll .bad { color: var(--warn); }
 .cmp-scroll td button { font: 600 12px var(--f-body); border: 0; background: none; color: var(--muted); cursor: pointer; padding: 4px 0; text-decoration: underline; }
+/* gezi planı */
+.sec { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.modeseg { align-self: flex-start; }
+.tips { border: 1px solid var(--hair); border-radius: 14px; padding: 4px 14px; font-size: 13px; }
+.tips summary { font-weight: 700; padding: 8px 0; cursor: pointer; }
+.tips ul { margin: 0 0 10px; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+.daybar { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: none; }
+.daybar button { flex: none; font: 600 13px var(--f-body); border: 1px solid var(--hair); background: none; color: var(--ink);
+  border-radius: 999px; padding: 6px 12px; cursor: pointer; min-height: 34px; display: inline-flex; align-items: center; gap: 6px; }
+.daybar button[aria-pressed="true"] { background: var(--ink); color: var(--panel); border-color: var(--ink); }
+.daybar i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+.day { border: 1px solid var(--hair); border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; }
+.day.sel { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.day header { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.day h2 { font: 700 16px/1.25 var(--f-display); margin: 0; }
+.day .when { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.day .date { font: 700 12px var(--f-body); color: #fff; border-radius: 6px; padding: 2px 7px; }
+.stops { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.stops li { display: grid; grid-template-columns: 26px 1fr; gap: 10px; align-items: start; }
+.stops li > div { min-width: 0; }
+.stops .n, .tstop { width: 24px; height: 24px; border-radius: 50%; color: #fff; font: 700 12px/24px var(--f-body); text-align: center; }
+.tstop { display: inline-block; transform: translate(-50%, -50%); border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.35); line-height: 20px; }
+.stops b { font-size: 14px; }
+.stops .t { font-variant-numeric: tabular-nums; color: var(--muted); font-weight: 700; margin-right: 4px; }
+.stops p { margin: 2px 0 0; font-size: 13px; color: var(--muted); }
+.stops small { font-size: 12px; font-weight: 700; color: var(--ink); }
+.day .show { align-self: flex-start; font: 700 13px var(--f-body); border: 1px solid var(--hair); background: none; color: var(--ink);
+  border-radius: 999px; padding: 7px 14px; cursor: pointer; min-height: 36px; }
 details.more > summary { color: var(--ink); font-weight: 700; padding: 4px 0; }
 details.more[open] > summary { margin-bottom: 6px; }
 details.more > .facts { margin-bottom: 8px; }
@@ -172,7 +200,8 @@ details.more > .facts { margin-bottom: 8px; }
   .tabs { display: flex; justify-content: center; position: fixed; left: 0; right: 0; bottom: 0; z-index: 1001; pointer-events: none;
     padding: 8px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
   .tabs .seg { pointer-events: auto; background: var(--panel); box-shadow: 0 4px 16px rgba(0,0,0,.25); }
-  .tabs button { min-height: 44px; min-width: 112px; font-size: 15px; }
+  .tabs button { min-height: 44px; min-width: 92px; font-size: 15px; }
+  .modeseg { display: none; }
   .peek:not([hidden]) { display: flex; gap: 10px; position: fixed; z-index: 1000;
     left: max(12px, env(safe-area-inset-left, 0px)); right: max(12px, env(safe-area-inset-right, 0px));
     bottom: calc(70px + env(safe-area-inset-bottom, 0px));
@@ -206,6 +235,12 @@ details.more > .facts { margin-bottom: 8px; }
       <h1>Mines'e yakın konaklama</h1>
       <p class="trip"><b>13–22 Kasım</b> · 9 gece · 3 kişi · hedef <b>Mines Paris</b>, 60 Bd Saint-Michel</p>
     </header>
+    <div class="seg modeseg" role="group" aria-label="Bölüm">
+      <button data-mode="listings" aria-pressed="true">İlanlar</button>
+      <button data-mode="trip" aria-pressed="false">Gezi planı</button>
+    </div>
+    <section class="sec" id="sec-trip" hidden></section>
+    <section class="sec" id="sec-listings">
     <details class="note"><summary id="status"></summary><p id="status-more"></p></details>
     <div class="controls">
       <span class="lbl">Sırala</span>
@@ -226,6 +261,7 @@ details.more > .facts { margin-bottom: 8px; }
     <ul class="list" id="list"></ul>
     <div class="legend" id="legend"></div>
     <p class="gpt">Skor (100 üzerinden), önem sırasıyla: 2 ayrı yatak odası 40 (salondaki çekyat sayılmaz; oda dökümü yoksa 32, şüpheliyse 18); puan 15 (az yorumlu ilanın puanı platform ortalamasına çekilir) + yorumlar 10 (son 2 yılın 3★ altı yorumları toplam yorumun %8'ine ulaşınca 0; izinsiz giriş iddiası −5); Mines'e kapıdan kapıya süre 20 (15 dk tam, 40 dk sıfır, sonrası dakika başı −0,5); fiyat: 65.000 TL bütçe içinde 3–15, bütçe üstü her 1.000 TL −2 (en çok −15). Fiyatı belli olmayan ilan en fazla 45 alır. Süreler elle girildi. Km değerleri kuş uçuşu; istasyon mesafesi kuş uçuşu, yürüme biraz daha uzun. Airbnb konumları platformun kaydırdığı yaklaşık konum (kesikli daire ≈ 300 m). Gerçek kapıdan kapıya süre için her kartta Google Maps rotası var.</p>
+    </section>
   </aside>
   <div id="map" role="region" aria-label="Harita: ilanlar, Mines ve raylı hatlar"></div>
   <div class="peek" id="peek" hidden></div>
@@ -237,8 +273,9 @@ details.more > .facts { margin-bottom: 8px; }
   </div>
   <nav class="tabs" aria-label="Görünüm">
     <div class="seg" role="group">
-      <button id="v-list" data-v="list" aria-pressed="true">Liste</button>
-      <button id="v-map" data-v="map" aria-pressed="false">Harita</button>
+      <button id="v-list" data-tab="listings" aria-pressed="true">İlanlar</button>
+      <button id="v-trip" data-tab="trip" aria-pressed="false">Gezi</button>
+      <button id="v-map" data-tab="map" aria-pressed="false">Harita</button>
     </div>
   </nav>
 </div>
@@ -397,6 +434,7 @@ details.more > .facts { margin-bottom: 8px; }
   const keyFn = { score: x => -x.score, dist: x => x.transit_min ?? (x.dist_mines_km ?? 1e3) * 10, price: x => x.price_total_try ?? 1e12,
     rating: x => -(x.rating == null ? -1 : x.rating / x.rating_scale) };
   // kısa liste bu tarayıcıda saklanır (gizli pencerede/engelli depolamada sadece oturum boyunca)
+  let mode = "listings";  // "listings" | "trip"
   const STORE = "parisev-kisa-liste";
   let starred = new Set();
   try { starred = new Set(JSON.parse(localStorage.getItem(STORE) || "[]")); } catch (e) {}
@@ -434,8 +472,9 @@ details.more > .facts { margin-bottom: 8px; }
 
     const show = new Set(rows.map(x => x.id));
     Object.entries(markers).forEach(([id, m]) => {
-      show.has(id) ? m.addTo(map) : m.remove();
-      if (rings[id]) show.has(id) ? rings[id].addTo(ringLayer) : rings[id].remove();
+      const on = mode === "listings" && show.has(id);  // gezi modunda ilan pinleri gizli
+      on ? m.addTo(map) : m.remove();
+      if (rings[id]) on ? rings[id].addTo(ringLayer) : rings[id].remove();
     });
     document.getElementById("count").textContent =
       `${rows.length} / ${D.listings.length} ilan${starred.size ? ` · ${starred.size} kısa listede` : ""}`;
@@ -506,10 +545,15 @@ details.more > .facts { margin-bottom: 8px; }
   }));
   const app = document.getElementById("app"), peek = document.getElementById("peek");
   const reduced = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function syncTabs() {
+    const cur = app.dataset.view === "map" ? "map" : mode;
+    document.querySelectorAll(".tabs button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.tab === cur)));
+    document.querySelectorAll(".modeseg button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.mode === mode)));
+  }
   function setView(v) {
     app.dataset.view = v;
-    document.querySelectorAll(".tabs button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.v === v)));
     if (v === "map") map.invalidateSize(); else peek.hidden = true;
+    syncTabs();
   }
   function showPeek(x) {
     const rm = { "onaylı": `✓ ${x.bedrooms} ayrı oda`, "doğrulanmalı": `${x.bedrooms} oda (teyit et)`,
@@ -555,7 +599,79 @@ details.more > .facts { margin-bottom: 8px; }
     document.querySelectorAll(".controls .seg button").forEach(o => o.setAttribute("aria-pressed", String(o === b)));
     render();
   }));
-  document.querySelectorAll(".tabs button").forEach(b => b.addEventListener("click", () => setView(b.dataset.v)));
+  // ---------- gezi planı ----------
+  const T = B.trip;
+  const DAYC = ["#2f6fb2", "#c2410c", "#15803d", "#7c3aed", "#b45309", "#0f766e", "#be123c", "#4d5b70", "#a16207", "#0369a1"];
+  const tripLayer = L.layerGroup();
+  let activeDay = null;
+  const secTrip = document.getElementById("sec-trip"), secList = document.getElementById("sec-listings");
+
+  function drawTrip() {
+    tripLayer.clearLayers();
+    T.days.forEach((d, i) => {
+      if (activeDay !== null && activeDay !== i) return;
+      const pts = d.stops.filter(s => s.lat != null).map(s => [s.lat, s.lng]);
+      if (pts.length > 1) L.polyline(pts, { color: DAYC[i], weight: 3, dashArray: "6 6", opacity: .9, interactive: false }).addTo(tripLayer);
+      d.stops.forEach((s, j) => {
+        if (s.lat == null) return;
+        L.marker([s.lat, s.lng], { zIndexOffset: 800,
+          icon: L.divIcon({ className: "", html: `<span class="tstop" style="background:${DAYC[i]}">${j + 1}</span>`, iconSize: null }) })
+          .bindPopup(`<b>${esc(d.short)} · ${esc(s.time)}</b><br>${esc(s.name)}<br><span style="color:var(--muted)">${esc(s.note || "")}</span>`, { maxWidth: 240 })
+          .addTo(tripLayer);
+      });
+    });
+  }
+  function renderTrip() {
+    const days = T.days.map((d, i) => `<article class="day${activeDay === i ? " sel" : ""}" data-day="${i}">
+      <header><span class="date" style="background:${DAYC[i]}">${esc(d.short)}</span><h2>${esc(d.title)}</h2><span class="when">${esc(d.when)}</span></header>
+      <ol class="stops">${d.stops.map((s, j) => `<li><span class="n" style="background:${s.lat != null ? DAYC[i] : "var(--muted)"}">${j + 1}</span>
+        <div><b><span class="t">${esc(s.time)}</span>${esc(s.name)}</b><p>${esc(s.note || "")}</p>${s.cost ? `<small>${esc(s.cost)}</small>` : ""}</div></li>`).join("")}</ol>
+      ${d.stops.some(s => s.lat != null) ? `<button class="show" type="button" data-show="${i}">Haritada göster</button>` : ""}
+    </article>`).join("");
+    secTrip.innerHTML = `
+      <details class="tips"${mobile() ? "" : " open"}><summary>Bilmeniz gerekenler</summary><ul>${T.tips.map(t => `<li>${esc(t)}</li>`).join("")}</ul></details>
+      <div class="daybar" role="group" aria-label="Gün seç">
+        <button type="button" data-day="all" aria-pressed="${activeDay === null}">Tüm günler</button>
+        ${T.days.map((d, i) => `<button type="button" data-day="${i}" aria-pressed="${activeDay === i}"><i style="background:${DAYC[i]}"></i>${esc(d.short)}</button>`).join("")}
+      </div>
+      ${days}
+      <p class="gpt">Plan: hafta sonları tam gün, hafta içi Mines çıkışı akşamları. Durak koordinatları yaklaşık. Fiyat ve saatler ${esc(T.updated)} itibarıyla; gitmeden teyit edin.</p>`;
+    secTrip.querySelectorAll(".daybar button").forEach(b => b.addEventListener("click", () =>
+      focusDay(b.dataset.day === "all" ? null : +b.dataset.day, false)));
+    secTrip.querySelectorAll("[data-show]").forEach(b => b.addEventListener("click", () => focusDay(+b.dataset.show, true)));
+  }
+  function focusDay(i, toMap) {
+    activeDay = i;
+    drawTrip(); renderTrip();
+    const pts = (i === null ? T.days.flatMap(d => d.stops) : T.days[i].stops).filter(s => s.lat != null).map(s => [s.lat, s.lng]);
+    if (toMap && mobile()) setView("map");
+    if (pts.length) map.fitBounds(pts, { padding: [50, 50], maxZoom: 15 });
+    if (i !== null && !mobile()) secTrip.querySelector(`.day[data-day="${i}"]`)?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+  function setMode(m) {
+    mode = m;
+    secTrip.hidden = m !== "trip";
+    secList.hidden = m !== "listings";
+    peek.hidden = true;
+    if (m === "trip") {
+      if (!secTrip.innerHTML) renderTrip();
+      drawTrip(); tripLayer.addTo(map);
+      focusDay(activeDay, false);
+    } else {
+      tripLayer.remove();
+      map.fitBounds(pts, { padding: [40, 40] });
+    }
+    render();
+    syncTabs();
+    document.getElementById("side").scrollTop = 0;
+  }
+  document.querySelectorAll(".modeseg button").forEach(b => b.addEventListener("click", () => setMode(b.dataset.mode)));
+  document.querySelectorAll(".tabs button").forEach(b => b.addEventListener("click", () => {
+    const t = b.dataset.tab;
+    if (t === "map") return setView("map");
+    if (t !== mode) setMode(t);
+    setView("list");
+  }));
   render();
 
   // tema değişince vektör altlığı yeniden boya

@@ -4,6 +4,7 @@
 Hedef: Mines Paris – PSL, 60 Boulevard Saint-Michel.
 
 **Site:** https://emirzoz.github.io/parisev/ — metro/RER/tramvay hatlı harita, skora göre renkli ilanlar, kartlarda fiyat, oda düzeni, ulaşım süresi ve düşük puanlı yorumlar.
+**Gezi planı:** sitedeki "Gezi" sekmesi — 13–22 Kasım günlük rota (hafta sonları tam gün, hafta içi akşamlar), haritada numaralı duraklar. Veri: [`data/trip_plan.json`](data/trip_plan.json)
 **Tablo:** [`out/Paris_konaklama_v2.xlsx`](out/Paris_konaklama_v2.xlsx)
 
 ## Skor (100 üzerinden, önem sırasıyla)
