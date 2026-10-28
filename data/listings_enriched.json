@@ -270,6 +270,74 @@
   "rank": 4
  },
  {
+  "id": "L28",
+  "platform": "Airbnb",
+  "url": "https://www.airbnb.com.tr/rooms/1637768683869166348",
+  "notes": "Kullanıcı sonradan ekledi (28.10.2026).",
+  "lat": 48.93204,
+  "lng": 2.42743,
+  "location_precision": "approx",
+  "title": "L'Écrin Parisien • T3 Design • Le Bourget • CDG Havalimanı",
+  "address": "Tüm kiralık konut, Le Bourget, Fransa",
+  "price_total_try": 72174,
+  "price_base_try": null,
+  "price_tax_try": null,
+  "price_note": "tüm ücretler dahil",
+  "rating": 4.94,
+  "rating_scale": 5,
+  "review_count": 35,
+  "max_guests": 5,
+  "bedrooms": 2,
+  "beds": 2,
+  "bed_layout": "1. yatak odası 1 çift kişilik yatak 2. yatak odası 1 çift kişilik yatak Oturma odası 1 kanepe",
+  "room_option": null,
+  "cancellation": "Ücretsiz iptal son gün: 12 Kasım",
+  "checkin_time": null,
+  "low_reviews": [],
+  "dist_mines_km": 11.6,
+  "nearest_stations": [
+   {
+    "name": "Le Bourget",
+    "lines": [
+     "RER B",
+     "TRAM 11"
+    ],
+    "dist_m": 190
+   },
+   {
+    "name": "Clovis / Drancy - Avenir",
+    "lines": [
+     "TRAM 1"
+    ],
+    "dist_m": 1740
+   },
+   {
+    "name": "Maurice Lachâtre",
+    "lines": [
+     "TRAM 1"
+    ],
+    "dist_m": 1740
+   }
+  ],
+  "gmaps_transit_url": "https://www.google.com/maps/dir/?api=1&travelmode=transit&origin=48.93204,2.42743&destination=48.845632,2.339672",
+  "price_listed_try": 62442,
+  "price_source": "ödeme ekranı ✓",
+  "transit_min": 26,
+  "transit_source": "kullanıcı, elle (2026-10-28)",
+  "rooms_status": "onaylı",
+  "rating_adj": 4.87,
+  "score": 60,
+  "score_parts": {
+   "oda": 40,
+   "puan": 13,
+   "yorum": 10,
+   "ulaşım": 11,
+   "fiyat": -14
+  },
+  "over_budget": true,
+  "rank": 5
+ },
+ {
   "id": "L17",
   "platform": "Airbnb",
   "url": "https://www.airbnb.com.tr/rooms/1061024052582307771",
@@ -360,7 +428,7 @@
    "fiyat": -14
   },
   "over_budget": true,
-  "rank": 5
+  "rank": 6
  },
  {
   "id": "L18",
@@ -440,7 +508,7 @@
    "fiyat": -10
   },
   "over_budget": true,
-  "rank": 6
+  "rank": 7
  },
  {
   "id": "L12",
@@ -519,7 +587,7 @@
    "fiyat": -4
   },
   "over_budget": true,
-  "rank": 7
+  "rank": 8
  },
  {
   "id": "L27",
@@ -592,7 +660,7 @@
    "fiyat": 11
   },
   "over_budget": false,
-  "rank": 8
+  "rank": 9
  },
  {
   "id": "L13",
@@ -666,7 +734,7 @@
    "fiyat": 5
   },
   "over_budget": false,
-  "rank": 9
+  "rank": 10
  },
  {
   "id": "L16",
@@ -732,74 +800,6 @@
    "yorum": 10,
    "ulaşım": 3,
    "fiyat": -4
-  },
-  "over_budget": true,
-  "rank": 10
- },
- {
-  "id": "L28",
-  "platform": "Airbnb",
-  "url": "https://www.airbnb.com.tr/rooms/1637768683869166348",
-  "notes": "Kullanıcı sonradan ekledi (28.10.2026).",
-  "lat": 48.93204,
-  "lng": 2.42743,
-  "location_precision": "approx",
-  "title": "L'Écrin Parisien • T3 Design • Le Bourget • CDG Havalimanı",
-  "address": "Tüm kiralık konut, Le Bourget, Fransa",
-  "price_total_try": 72174,
-  "price_base_try": null,
-  "price_tax_try": null,
-  "price_note": "tüm ücretler dahil",
-  "rating": 4.94,
-  "rating_scale": 5,
-  "review_count": 35,
-  "max_guests": 5,
-  "bedrooms": 2,
-  "beds": 2,
-  "bed_layout": "1. yatak odası 1 çift kişilik yatak 2. yatak odası 1 çift kişilik yatak Oturma odası 1 kanepe",
-  "room_option": null,
-  "cancellation": "Ücretsiz iptal son gün: 12 Kasım",
-  "checkin_time": null,
-  "low_reviews": [],
-  "dist_mines_km": 11.6,
-  "nearest_stations": [
-   {
-    "name": "Le Bourget",
-    "lines": [
-     "RER B",
-     "TRAM 11"
-    ],
-    "dist_m": 190
-   },
-   {
-    "name": "Clovis / Drancy - Avenir",
-    "lines": [
-     "TRAM 1"
-    ],
-    "dist_m": 1740
-   },
-   {
-    "name": "Maurice Lachâtre",
-    "lines": [
-     "TRAM 1"
-    ],
-    "dist_m": 1740
-   }
-  ],
-  "gmaps_transit_url": "https://www.google.com/maps/dir/?api=1&travelmode=transit&origin=48.93204,2.42743&destination=48.845632,2.339672",
-  "price_listed_try": 62442,
-  "price_source": "ödeme ekranı ✓",
-  "transit_min": null,
-  "transit_source": null,
-  "rooms_status": "onaylı",
-  "rating_adj": 4.87,
-  "score": 55,
-  "score_parts": {
-   "oda": 40,
-   "puan": 13,
-   "yorum": 10,
-   "ulaşım": 6,
-   "fiyat": -14
   },
   "over_budget": true,
   "rank": 11
